@@ -18,15 +18,10 @@
 N, K = map(int, input().split())
 coin_values = [int(input()) for _ in range(N)]
 
-# 필요한 동전의 개수를 저장할 변수 count를 0으로 초기화
 count = 0
 
-# 가장 가치가 큰 동전부터 사용하여 K원을 만들어 나간다.
 for i in range(N - 1, -1, -1):
-    # 현재 가치의 동전으로 K원을 만들 수 있는 최대 개수를 구한다.
     count += K // coin_values[i]
-    # K원에서 현재 가치의 동전으로 만든 금액을 뺀다.
     K %= coin_values[i]
 
-# 필요한 동전의 개수 출력
 print(count)
