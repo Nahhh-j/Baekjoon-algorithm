@@ -15,3 +15,20 @@
 첫째 줄에 정답을 출력한다.
 '''
 
+calculate = input().split('-')
+
+def plus(cal):
+    cal = cal.split('+')
+    temp = 0
+    for i in range(len(cal)) :
+        temp += int(cal[i])
+    return temp
+result = 0
+
+for i in range(len(calculate)):
+    if i == 0:
+        result += plus(calculate[i])
+    else:
+        result += -1*plus(calculate[i])
+
+print(result)

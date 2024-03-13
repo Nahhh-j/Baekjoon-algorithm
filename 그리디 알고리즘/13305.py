@@ -14,3 +14,17 @@
 출력
 표준 출력으로 제일 왼쪽 도시에서 제일 오른쪽 도시로 가는 최소 비용을 출력한다. 
 '''
+
+n = int(input())
+
+distance = list(map(int, input().split()))
+price = list(map(int, input().split()))
+price_cheap = 1000000001
+result = 0
+
+for i in range(n-1):
+    if price_cheap > price[i]:
+        price_cheap = price[i]
+    result += price_cheap*distance[i]
+
+print(result)
