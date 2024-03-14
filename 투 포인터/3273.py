@@ -10,3 +10,28 @@ n개의 서로 다른 양의 정수 a1, a2, ..., an으로 이루어진 수열이
 출력
 문제의 조건을 만족하는 쌍의 개수를 출력한다.
 '''
+
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+arr = sorted(list(map(int, input().split())))
+x = int(input())
+
+i = 0
+j = n-1
+count = 0
+
+while i < j:
+    sum_tmp = arr[i] + arr[j]
+    if sum_tmp == x:
+        count += 1
+        i += 1
+        j -= 1
+    elif sum_tmp > x:
+        j -= 1
+    else:
+        i += 1
+
+print(count)
