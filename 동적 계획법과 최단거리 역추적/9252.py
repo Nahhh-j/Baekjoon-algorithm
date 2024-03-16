@@ -16,22 +16,19 @@ LCS가 여러 가지인 경우에는 아무거나 출력하고, LCS의 길이가
 import sys
 input = sys.stdin.readline
 
-a = list(input().rstrip())
-b = list(input().rstrip())
-dp = [[""] * (len(b) + 1) for _ in range(len(a) + 1)]
+A = [""] + list(input().rstrip())
+B = [""] + list(input().rstrip())
+LCS = [[""]*len(B) for _ in range(len(A))]
 
-for i in range(1,len(a)+1):
-    for j in range(1, len(b)+1):
-        if a[i-1] == b[j-1]:
-            dp[i][j] = dp[i-1][j-1] + a[i-1]
+for i in range(1, len(A)):
+    for j in range(1, len(B)):
+        if A[i] == B[j]:
+            LCS[i][j] = LCS[i-1][j-1] + A[i]
         else:
-            if len(dp[i-1][j]) >= len(dp[i][j-1]):
-                dp[i][j] = dp[i-1][j]
+            if len(LCS[i-1][j]) >= len(LCS[i][j-1]):
+                LCS[i][j] = LCS[i-1][j]
             else:
-                dp[i][j] = dp[i][j-1]
+                LCS[i][j] = LCS[i][j-1]
 
-if len(dp[-1][-1]) == 0:
-    print(0)
-else:
-    print(len(dp[-1][-1]))
-    print(dp[-1][-1])
+result = LCS[-1][-1]
+print(len(result), result, sep="\n")
