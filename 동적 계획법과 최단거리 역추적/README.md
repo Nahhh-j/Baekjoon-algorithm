@@ -1,5 +1,8 @@
 # 9019의 고민 흔적을 기록 ,,
 
+![스크린샷 2024-03-18 110010](https://github.com/Nahhh-j/Baekjoon-algorithm/assets/105144666/1198c740-83ac-4880-a14a-4fd7c9fe2cae)
+
+
 <br/>
 
 백준 온라인 저지(BOJ)에서는 사용자가 제출한 코드를 실행하는 데 두 가지 주요 언어를 지원한다.
