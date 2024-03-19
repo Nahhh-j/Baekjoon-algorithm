@@ -1,0 +1,56 @@
+# 플로이드 2
+
+'''
+문제
+n(1 ≤ n ≤ 100)개의 도시가 있다. 그리고 한 도시에서 출발하여 다른 도시에 도착하는 m(1 ≤ m ≤ 100,000)개의 버스가 있다. 각 버스는 한 번 사용할 때 필요한 비용이 있다.
+모든 도시의 쌍 (A, B)에 대해서 도시 A에서 B로 가는데 필요한 비용의 최솟값을 구하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 도시의 개수 n이 주어지고 둘째 줄에는 버스의 개수 m이 주어진다. 그리고 셋째 줄부터 m+2줄까지 다음과 같은 버스의 정보가 주어진다. 먼저 처음에는 그 버스의 출발 도시의 번호가 주어진다. 버스의 정보는 버스의 시작 도시 a, 도착 도시 b, 한 번 타는데 필요한 비용 c로 이루어져 있다. 시작 도시와 도착 도시가 같은 경우는 없다. 비용은 100,000보다 작거나 같은 자연수이다.
+
+출력
+먼저, n개의 줄을 출력해야 한다. i번째 줄에 출력하는 j번째 숫자는 도시 i에서 j로 가는데 필요한 최소 비용이다. 만약, i에서 j로 갈 수 없는 경우에는 그 자리에 0을 출력한다.
+그 다음에는 n×n개의 줄을 출력해야 한다. i×n+j번째 줄에는 도시 i에서 도시 j로 가는 최소 비용에 포함되어 있는 도시의 개수 k를 출력한다. 그 다음, 도시 i에서 도시 j로 가는 경로를 공백으로 구분해 출력한다. 이때, 도시 i와 도시 j도 출력해야 한다. 만약, i에서 j로 갈 수 없는 경우에는 0을 출력한다.
+'''
+
+import sys
+input = sys.stdin.readline
+
+n,m = int(input()),int(input())
+graph = [[float('inf')]*n for _ in range(n)]
+path = [[-1]*n for _ in range(n)]
+for _ in range(m):
+    a,b,c = map(int,input().split())
+    a-=1; b-=1
+    graph[a][b] = min(graph[a][b], c)
+    path[a][b] = a
+
+for k in range(n):
+    graph[k][k] = 0
+    path[k][k] = -1
+    for i in range(n):
+        for j in range(n):
+            d = graph[i][k]+graph[k][j]
+            if graph[i][j] > d:
+                graph[i][j] = d
+                path[i][j] = path[k][j]
+            
+for i in graph:
+    for j in i:
+        print(j if j!=float('inf') else 0, end=" ")
+    print()
+
+for i in range(n):
+    for j in range(n):
+        if path[i][j] == -1:
+            print(0)
+            continue
+        
+        v = j
+        ans = []
+        while True:
+            if v==i:
+                break
+            ans.append(v+1)
+            v = path[i][v]
+        print(len(ans)+1,i+1,*ans[::-1])
