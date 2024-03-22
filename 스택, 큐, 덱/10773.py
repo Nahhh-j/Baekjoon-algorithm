@@ -15,3 +15,16 @@
 출력
 재민이가 최종적으로 적어 낸 수의 합을 출력한다. 최종적으로 적어낸 수의 합은 231-1보다 작거나 같은 정수이다.
 '''
+
+K = int(input())
+
+stack = []
+
+for _ in range(K) :
+    N = int(input())
+    if N == 0 :
+        stack.pop()
+    else :
+        stack.append(N)
+
+print(sum(stack))

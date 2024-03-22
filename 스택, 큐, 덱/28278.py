@@ -19,3 +19,35 @@
 출력
 출력을 요구하는 명령이 주어질 때마다 명령의 결과를 한 줄에 하나씩 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+stack = []
+for _ in range(n):
+    cmd = list(map(int, input().split()))
+
+    if cmd[0] == 1:
+        stack.append(cmd[1])
+
+    elif cmd[0] == 2:
+        if stack:
+            print(stack.pop())
+        else:
+            print(-1)
+
+    elif cmd[0] == 3:
+        print(len(stack))
+
+    elif cmd[0] == 4:
+        if len(stack) == 0:
+            print(1)
+        else:
+            print(0)
+            
+    elif cmd[0] == 5:
+        if stack:
+            print(stack[-1])
+        else:
+            print(-1)
