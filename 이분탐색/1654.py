@@ -13,3 +13,24 @@
 첫째 줄에 N개를 만들 수 있는 랜선의 최대 길이를 센티미터 단위의 정수로 출력한다.
 '''
 
+import sys
+
+k, n = map(int, sys.stdin.readline().split())
+arr = []
+
+for i in range(k):
+    arr.append(int(input()))
+
+start = 1
+end = max(arr)
+
+while (start <= end):
+    mid = (start + end) // 2
+    cnt = 0
+    for i in range(k):
+        cnt += arr[i] // mid
+    if cnt >= n:
+        start = mid + 1
+    else:
+        end = mid - 1
+print(end)
