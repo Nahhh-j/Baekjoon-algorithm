@@ -14,3 +14,17 @@
 출력
 입력에서 0이 주어진 회수만큼 답을 출력한다. 만약 배열이 비어 있는 경우인데 절댓값이 가장 작은 값을 출력하라고 한 경우에는 0을 출력하면 된다.
 '''
+
+import sys, heapq
+
+abs_heap = []
+n = int(sys.stdin.readline())
+for i in range(n):
+	num = int(sys.stdin.readline())
+	if num:
+		heapq.heappush(abs_heap, (abs(num), num))
+	else:
+		if abs_heap:
+			print(heapq.heappop(abs_heap)[1])
+		else:
+			print(0)
