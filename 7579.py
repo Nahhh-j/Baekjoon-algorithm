@@ -16,4 +16,24 @@
 필요한 메모리 M 바이트를 확보하기 위한 앱 비활성화의 최소의 비용을 계산하여 한 줄에 출력해야 한다.
 '''
 
-N, M = map(int, input().split()) memory = list(map(int, input().split()))c = list(map(int, input().split())) dp = [[0 for _ in range(sum(c)+1)] for _ in range(N+1)] # dp[i][j] => 1~i번째 앱까지, j의 cost로 확보 가능한 메모리의 최대for i in range(1, N+1):    for j in range(0, sum(c)+1):        if j >= c[i-1]:            dp[i][j] = max(dp[i-1][j], dp[i-1][j-c[i-1]]+memory[i-1])        else:            dp[i][j] = dp[i-1][j] for i, mem in enumerate(dp[N]):    if mem >= M:        print(i)        break
+N, M = map(int, input().split())
+
+memoryList = [0] + [int(x) for x in input().split()]
+costList = [0] + [int(x) for x in input().split()]
+
+backpack = [[0] * (sum(costList) + 1) for _ in range(N + 1)]
+
+answer = sum(costList)
+
+for i in range(1, N + 1):
+    for j in range(1, sum(costList) + 1):
+        if j < costList[i]:
+            backpack[i][j] = backpack[i - 1][j]
+
+        else:
+            backpack[i][j] = max(backpack[i - 1][j], backpack[i - 1][j - costList[i]] + memoryList[i])
+
+        if backpack[i][j] >= M:
+            answer = min(answer, j)
+
+print(answer)
