@@ -22,15 +22,14 @@ arr1 = dict()
 answer = []
 for i in range(n):
     x = input()
-    if len(x) not in arr1:
-        arr1[len(x)] = list()        
-    arr1[len(x)].append(x)
+    if x not in arr1:
+        arr1[x] = i
+
 for i in range(m):
     y = input()
-    if len(y) in arr1:
-        if y in arr1[len(y)]:
-            answer.append(y)
-
+    if y in arr1:
+        answer.append(y)
+        
 answer.sort()
 print(len(answer))
 print(''.join(answer), end = '')
