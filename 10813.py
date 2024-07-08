@@ -15,3 +15,13 @@
 1번 바구니부터 N번 바구니에 들어있는 공의 번호를 공백으로 구분해 출력한다.
 '''
 
+N,M = map(int, input().split())
+
+basket = [i for i in range(1,N+1)]
+
+for i in range(M):
+    i,j = map(int, input().split())
+    basket[i-1], basket[j-1] = basket[j-1], basket[i-1]
+
+for i in range(N):
+    print(basket[i], end = ' ')
