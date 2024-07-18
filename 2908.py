@@ -13,3 +13,5 @@
 첫째 줄에 상수의 대답을 출력한다.
 '''
 
+a, b = input().split()
+print(max("".join(reversed(a)), "".join(reversed(b))))
