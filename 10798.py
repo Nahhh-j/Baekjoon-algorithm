@@ -27,3 +27,17 @@ Aa0aPAf985Bz1EhCz2W3D1gkD6x
 영석이가 세로로 읽은 순서대로 글자들을 출력한다. 이때, 글자들을 공백 없이 연속해서 출력한다. 
 '''
 
+words = []
+length = []
+for _ in range(5):
+    word = input()
+    words.append(word)
+    length.append(len(word))
+
+rst = ''
+for i in range(max(length)):
+    for j in range(5):
+        if i < length[j]:
+            rst += words[j][i]
+
+print(rst)
