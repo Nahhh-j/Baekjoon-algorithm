@@ -30,4 +30,3 @@ while True :
     print("Isosceles")
   else :
     print("Scalene")
-출처: https://magentino.tistory.com/93 [마젠티노 IT개발스토리:티스토리]
