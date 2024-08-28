@@ -28,13 +28,13 @@
 A와 B의 최소공배수를 한 줄에 출력한다.
 '''
 
-a, b = map(int, input().split())
+numbers = list(map(int, input().split()))
+numbers.sort(reverse = True)
 
-def gcd(a, b):
-    while b:
-        mod = b
-        b = a % b
-        a = mod
-    return a
+A, B = numbers[0], numbers[1]
 
-print(a*b//gcd(a, b))
+while B != 0:
+    A = A%B
+    A,B = B,A
+    
+print((numbers[0] * numbers [1]) // A)
