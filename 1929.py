@@ -11,15 +11,16 @@ M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오
 한 줄에 하나씩, 증가하는 순서대로 소수를 출력한다.
 '''
 
-M, N = map(int, input().split())
+def primeNumber(N,M):
+    for now in range(N,M+1):
+        if now > 1:
+            sieve = True
+            for i in range(2, int(now ** 0.5) + 1):
+                if now%i == 0:
+                    sieve = False
+                    break
+            if sieve:
+                print(now)
 
-for i in range(M, N+1):
-    if i == 0:
-        continue
-
-    for j in range(2, int(i**0.5)+1):
-        if i % j == 0:
-            break
-    
-    else:
-        print(i)
+N,M = map(int,input().split())
+primeNumber(N,M)
