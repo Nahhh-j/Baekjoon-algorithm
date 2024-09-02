@@ -17,3 +17,12 @@
 출력
 마지막에 열려 있는 창문의 개수를 출력한다.
 '''
+
+import sys
+N = int(sys.stdin.readline())
+result = 0
+x = 1
+while x*x <= N:
+    x += 1
+    result +=1
+print(result)
