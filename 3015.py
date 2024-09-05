@@ -16,19 +16,30 @@
 서로 볼 수 있는 쌍의 수를 출력한다.
 '''
 
-oasis = [int(input()) for _ in range(int(input()))]
+from collections import deque
 
-stack = []
-result = 0
+N = int(input())
+H = []
+for i in range(N):
+    H.append(int(input()))
+stack = deque()
 
-for o in oasis:
-  while stack and stack[-1]<o: # >
-    stack.pop()
-    result += 1
+ans = 0
 
-  stack.append(o)
-
-  if len(stack)>0:
-    result += len(stack)-1
-
-print(result)
+for i in range(N):
+    while len(stack) and stack[-1][0] < H[i]:
+        ans += stack.pop()[1]
+    
+    if not len(stack):
+        stack.append([H[i], 1])
+    else:
+        if stack[-1][0] == H[i]:
+            c = stack[-1][1]
+            ans += c
+            stack[-1][1] = c+1
+            if len(stack) > 1:
+                ans += 1
+        else:
+            stack.append([H[i], 1])
+            ans += 1
+print(ans)
