@@ -35,14 +35,18 @@ fibonacci(3)은 fibonacci(2)와 fibonacci(1)의 결과를 얻고, 2를 리턴한
 각 테스트 케이스마다 0이 출력되는 횟수와 1이 출력되는 횟수를 공백으로 구분해서 출력한다.
 '''
 
-int fibonacci(int n) {
-    if (n == 0) {
-        printf("0");
-        return 0;
-    } else if (n == 1) {
-        printf("1");
-        return 1;
-    } else {
-        return fibonacci(n‐1) + fibonacci(n‐2);
-    }
-}
+zero = [1, 0, 1]
+one = [0, 1, 1]
+
+def fibonacci(num):
+    length = len(zero)
+    if num >= length:
+        for i in range(length, num+1):
+            zero.append(zero[i-1] + zero[i-2])
+            one.append(one[i-1] + one[i-2])
+    print('{} {}'.format(zero[num], one[num]))
+
+T = int(input())
+    
+for _ in range(T):
+    fibonacci(int(input()))
