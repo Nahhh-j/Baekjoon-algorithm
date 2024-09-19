@@ -14,3 +14,20 @@
 상근이가 선수 다섯 명을 선발할 수 없는 경우에는 "PREDAJA" (따옴표 없이)를 출력한다. PREDAJA는 크로아티아어로 항복을 의미한다. 선발할 수 있는 경우에는 가능한 성의 첫 글자를 사전순으로 공백없이 모두 출력한다.
 '''
 
+n = int(input())
+
+players = []
+for _ in range(n):
+  player = input()
+  players.append(player[0])
+
+possible = []
+first_names = set(players)
+for p in first_names:
+  if (players.count(p) >= 5):
+    possible.append(p)
+
+if (len(possible) > 0):
+  print(''.join(sorted(possible)))
+else:
+  print("PREDAJA")
