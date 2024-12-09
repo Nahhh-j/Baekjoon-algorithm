@@ -11,3 +11,12 @@
 출력
 첫째 줄에 검증수를 출력한다.
 '''
+
+num = map(int, input().split())
+
+result = 0
+
+for i in num:
+   result += i ** 2
+
+print(result%10)
