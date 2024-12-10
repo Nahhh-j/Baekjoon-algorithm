@@ -10,3 +10,16 @@
 출력
 첫째 줄부터 셋째 줄까지 한 줄에 하나씩 결과를 도는 A, 개는 B, 걸은 C, 윷은 D, 모는 E로 출력한다.
 '''
+
+for i in range(3):
+    a = list(map(int, input().split()))
+    if a.count(0) == 1:
+        print("A")
+    elif a.count(0) == 2:
+        print("B")
+    elif a.count(0) == 3:
+        print("C")   
+    elif a.count(0) == 4:
+        print("D")
+    else:
+        print("E") 
