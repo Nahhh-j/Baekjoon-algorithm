@@ -12,3 +12,10 @@
 출력
 첫째 줄에 답을 출력한다.
 '''
+
+class Solution:
+    def smallestEvenMultiple(self, n: int) -> int:
+        if n%2==0:
+            return n
+        else :
+            return n*2
