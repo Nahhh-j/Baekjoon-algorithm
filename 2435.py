@@ -50,3 +50,12 @@
 출력
 첫째 줄에, 온도의 수열에서 연속적인 K일의 온도의 합이 최대가 되는 값을 출력한다.
 '''
+
+n, k = map(int, input().split())
+num_list = list(map(int, input().split()))
+result = []
+
+for i in range(0, n-k+1):
+    result.append(sum(num_list[i:i+k]))
+    
+print(max(result))
