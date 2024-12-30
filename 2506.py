@@ -15,3 +15,17 @@ OX 문제는 맞거나 틀린 두 경우의 답을 가지는 문제를 말한다
 출력
 첫째 줄에 입력에서 주어진 채점 결과에 대하여 가산점을 고려한 총 점수를 출력한다.
 '''
+
+n = int(input())
+sum = 0
+result = 0
+k = list(map(int, input().split()))
+
+for i in range(n):
+    if k[i] == 1:
+        sum += 1
+        result += sum
+    else:
+        sum = 0
+
+print(result)
