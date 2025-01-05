@@ -22,3 +22,32 @@ A ⇒ < < < > < < > < >
 출력
 여러분은 제시된 부등호 관계를 만족하는 k+1 자리의 최대, 최소 정수를 첫째 줄과 둘째 줄에 각각 출력해야 한다. 단 아래 예(1)과 같이 첫 자리가 0인 경우도 정수에 포함되어야 한다. 모든 입력에 답은 항상 존재하며 출력 정수는 하나의 문자열이 되도록 해야 한다. 
 '''
+
+def check(a, b, op):
+  if op == '<':
+    if a > b: return False
+  if op == '>':
+    if a < b: return False
+  return True
+
+def dfs(cnt, num):
+  if cnt == k+1:
+    answer.append(num)
+    return
+  
+  for i in range(10):
+    if visited[i]: continue
+
+    if cnt == 0 or check(num[cnt-1], str(i), signs[cnt-1]):
+      visited[i] = 1
+      dfs(cnt+1, num+str(i))
+      visited[i] = 0
+
+k = int(input())
+signs = list(input().split())
+visited = [0]*10
+answer = []
+dfs(0, '')
+answer.sort()
+print(answer[-1])
+print(answer[0])
