@@ -21,3 +21,45 @@
 출력
 첫째 줄에 유시 섬에서 출발해 오렌지 공주를 구해오는 총 경로의 수를 1000으로 나눈 나머지를 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+def DFS(x1,x2):
+  DP[x1][x2] = 0
+  M = max(x1,x2)+1
+  for next in range(M,N-1):
+    if not graph1[x1][next]:
+      break
+    if DP[next][x2]==-1:
+      DFS(next,x2)
+    DP[x1][x2] += DP[next][x2]
+  for next in range(M,N-1):
+    if not graph2[x2][next]:
+      continue
+    if DP[x1][next]==-1:
+      DFS(x1,next)
+    DP[x1][x2] += DP[x1][next]
+  DP[x1][x2] += int(graph1[x1][-1]==graph2[x2][-1]==1)
+  DP[x1][x2] %= 1000
+
+N = int(input())
+
+data = [[*map(int,input().split())] for i in range(N)]
+graph1,graph2 = [[[0]*N for i in range(N)] for i in range(2)]
+
+for i in range(N):
+  x,d,p = data[i]
+  for j in range(i+1,N):
+    if data[j][0]>x+d:
+      break
+    graph1[i][j] = 1
+  if p:
+    for j in range(i-1,-1,-1):
+      if data[j][0]<x-d:
+        break
+      graph2[j][i] = 1
+
+DP = [[-1]*N for i in range(N)]
+DFS(0,0)
+print(DP[0][0])
