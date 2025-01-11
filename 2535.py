@@ -26,3 +26,22 @@
 출력
 메달을 받는 학생들을 금, 은, 동메달 순서대로 한 줄에 한 명씩 출력한다. 즉, 첫 번째 줄에는 금메달 수상자를, 두 번째 줄에는 은메달 수상자를, 세 번째 줄에는 동메달 수상자를 출력한다. 하나의 줄에는 소속국가 번호와 학생 번호를 하나의 빈칸을 사이에 두고 출력한다. 
 '''
+
+import sys
+
+n = int(input())
+lst = []
+
+for _ in range(n):
+    lst.append(list(map(int, sys.stdin.readline().split())))
+
+lst.sort(key = lambda x: -x[2])
+
+print(*lst[0][:2])
+print(*lst[1][:2])
+
+i = 2
+if lst[0][0] == lst[1][0]:
+    while lst[0][0] == lst[i][0]:
+        i += 1
+print(*lst[i][:2])
