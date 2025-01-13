@@ -18,3 +18,11 @@
 출력
 홀수가 존재하지 않는 경우에는 첫째 줄에 -1을 출력한다. 홀수가 존재하는 경우 첫째 줄에 홀수들의 합을 출력하고, 둘째 줄에 홀수들 중 최솟값을 출력한다.
 '''
+
+numbers = [int(input()) for _ in range(7)]
+numbers = [num for num in numbers if num % 2 == 1]
+if numbers:
+    print(sum(numbers))
+    print(min(numbers))
+else:
+    print(-1)
