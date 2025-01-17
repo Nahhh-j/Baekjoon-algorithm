@@ -55,4 +55,3 @@ for i in range(M):
 
 print(len(result))
 print(*sorted(result))
-출처: https://tooo1.tistory.com/487 [개발자 퉁이리:티스토리]
