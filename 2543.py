@@ -14,3 +14,39 @@
 출력
 첫째 줄에 문제의 조건을 만족하면서 처리장치를 부착할 수 있는 경우의 수를 출력한다. 만약 경우의 수가 20,070,713 이상일 때에는 20,070,713으로 나눈 나머지를 출력한다. 또한 계산 도중 오버플로우가 발생할 수 있음을 유의하라.
 '''
+
+MOD = 20070713
+
+def solve():
+    import sys
+    sys.setrecursionlimit(10**6)
+    input = sys.stdin.read
+    data = input().splitlines()
+    
+    N = int(data[0])
+    
+    intervals = []
+    for i in range(1, N + 1):
+        start, end = map(int, data[i].split())
+        intervals.append((start, end))
+    
+    intervals.sort(key=lambda x: x[1])
+    
+    dp = [0] * (N + 1)
+    dp[0] = 1
+    
+    last_index = [-1] * N
+    
+    for i in range(N):
+        for j in range(i - 1, -1, -1):
+            if intervals[j][1] < intervals[i][0]:
+                last_index[i] = j
+                break
+    
+    for i in range(1, N + 1):
+        dp[i] = dp[i - 1]
+        if last_index[i - 1] != -1:
+            dp[i] += dp[last_index[i - 1] + 1]
+        dp[i] %= MOD
+    
+    print(dp[N])
