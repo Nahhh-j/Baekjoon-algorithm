@@ -10,3 +10,7 @@
 출력
 N개의 줄에 걸쳐 별을 적절히 찍는다.
 '''
+
+N = int(input())
+for _ in range(N):
+    print('*'*N)
