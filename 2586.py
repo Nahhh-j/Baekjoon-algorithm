@@ -15,3 +15,24 @@
 출력
 사용하는 호스 길이의 합을 출력한다. 출력 결과는 231-1을 넘지 않는다.
 '''
+
+def minimize_hose_length(p, f, pumps, firetrucks):
+    i, j = 0, 0  # 투 포인터 초기화
+    total_hose_length = 0
+
+    while j < f:
+        # 소방차 j와 가장 가까운 펌프 i를 매칭
+        total_hose_length += abs(pumps[i] - firetrucks[j])
+        i += 1  # 펌프는 소진됨
+        j += 1  # 소방차는 연결 완료
+
+    return total_hose_length
+
+
+# 입력 받기
+P, F = map(int, input().split())  # 펌프 수와 소방차 수
+pumps = list(map(int, input().split()))  # 펌프 위치
+firetrucks = list(map(int, input().split()))  # 소방차 위치
+
+# 결과 출력
+print(minimize_hose_length(P, F, pumps, firetrucks))
