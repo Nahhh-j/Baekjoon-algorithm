@@ -21,3 +21,15 @@
 출력
 학생들이 처음에 줄을 선 순서대로 1번부터 번호를 매길 때, 첫째 줄에 학생들이 최종적으로 줄을 선 순서를 그 번호로 출력한다. 학생 번호 사이에는 한 칸의 공백을 출력한다.
 '''
+
+n = int(input())
+lst = list(map(int,input().split()))
+lst2= []
+for i in range(n) :
+    if lst[i] == 0 :
+        lst2.insert(0,i+1)
+    else :
+        lst2.insert(lst[i],i+1)
+
+for i in reversed(lst2):
+    print(i,end=' ')
