@@ -10,3 +10,16 @@
 출력
 첫째 줄에는 입력으로 주어진 두 수의 최대공약수를, 둘째 줄에는 입력으로 주어진 두 수의 최소 공배수를 출력한다.
 '''
+
+a, b = map(int, input().split())
+
+def gcd(a, b):
+    while b > 0:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+print(gcd(a, b))
+print(lcm(a, b))
