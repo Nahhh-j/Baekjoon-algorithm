@@ -13,3 +13,31 @@
 출력
 첫째 줄에는 입력된 표본 모양수열과 같은 다각형을 그리는 모양수열들의 개수를 출력한다. 둘째 줄부터는 각 줄에 표본 모양수열과 같은 다각형을 그릴 수 있는 모양수열을 출력한다. 출력되는 모양수열의 숫자들은 한 칸 띄고 출력한다.
 '''
+
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+convert = lambda x : (x + 2) % 4 if x != 2 else 4
+
+N = int(input())
+standard = deque(map(int, input().split()))
+rev_standard = deque(map(convert, standard))
+rev_standard.reverse()
+
+cnt = 0
+result = list()
+
+for _ in range(int(input())) :
+  ctr_grp = deque(map(int, input().split()))
+
+  tmp = ctr_grp.copy()
+  for _ in range(N) :
+    if standard == tmp or rev_standard == tmp :
+      cnt += 1
+      result.append(ctr_grp)
+    tmp.rotate(1)
+
+print(cnt)
+for _lst in result :
+  print(*_lst)
