@@ -12,3 +12,13 @@
 출력
 입력에서 요구한 두 사람의 촌수를 나타내는 정수를 출력한다. 어떤 경우에는 두 사람의 친척 관계가 전혀 없어 촌수를 계산할 수 없을 때가 있다. 이때에는 -1을 출력해야 한다.
 '''
+
+import sys
+N = int(sys.stdin.readline())
+a, b = map(int,sys.stdin.readline().split())
+M = int(sys.stdin.readline())
+family = [[] for i in range(N+1)]
+for i in range(M):
+    x, y = map(int, sys.stdin.readline().split())
+    family[x].append(y)
+    family[y].append(x)
