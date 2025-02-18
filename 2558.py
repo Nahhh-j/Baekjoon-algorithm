@@ -10,3 +10,7 @@
 출력
 첫째 줄에 A+B를 출력한다.
 '''
+
+a= int(input())
+b= int(input())
+print(a+b)
