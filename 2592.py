@@ -12,3 +12,7 @@
 출력
 첫째 줄에는 평균을 출력하고, 둘째 줄에는 최빈값을 출력한다. 최빈값이 둘 이상일 경우 그 중 하나만 출력한다. 평균과 최빈값은 모두 자연수이다.
 '''
+
+numbers = [int(input()) for i in range(10)]
+print(sum(numbers)//10)
+print(max(numbers, key = numbers.count))
