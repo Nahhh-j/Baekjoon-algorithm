@@ -21,3 +21,46 @@
 출력
 첫째 줄에 주어진 체스판 위에 놓을 수 있는 비숍의 최대 개수를 출력한다.
 '''
+
+def DFS(i):
+  if visited[i]:
+    return 0
+  visited[i] = 1
+  for j in graph[i]:
+    if not match[j]:
+      match[j] = i
+      return 1
+  for j in graph[i]:
+    if DFS(match[j]):
+      match[j] = i
+      return 1
+  return 0
+
+N = int(input())
+board = [[0]*N for i in range(N)]
+for y,x in [map(int,input().split()) for i in range(int(input()))]:
+  board[y-1][x-1] = -1
+R = 0
+for k in range(N*2):
+  R += 1
+  for y in range(N):
+    if N>y>=0 and N>k-y>=0:
+      if board[y][k-y]<0:
+        R += 1
+        continue
+      board[y][k-y] = R
+graph = [[] for i in range(R+1)]
+C = 0
+for k in range(-N+1,N):
+  C += 1
+  for y in range(N):
+    if N>y>=0 and N>y-k>=0:
+      if board[y][y-k]<0:
+        C += 1
+        continue
+      graph[board[y][y-k]].append(C)
+M = 0; match = [0]*(C+1)
+for r in range(1,R+1):
+  visited = [0]*(R+1)
+  M += DFS(r)
+print(M)
