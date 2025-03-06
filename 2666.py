@@ -14,3 +14,22 @@ n개의 같은 크기의 벽장들이 일렬로 붙어져 있고 벽장의 문�
 출력
 벽장문의 최소 이동횟수를 화면에 출력한다.
 '''
+
+ans = 10000000
+
+def dfs(open1, open2, depth, cnt):
+    global ans
+    
+    if depth == M:
+        ans = min(ans, cnt)
+        return
+        
+    tmp1 = abs(open1 - arr[depth])
+    tmp2 = abs(open2 - arr[depth])
+
+    dfs(arr[depth], open2, depth+1, cnt+tmp1)
+    dfs(open1, arr[depth], depth+1, cnt+tmp2)
+
+dfs(open1, open2, 0, 0)
+
+print(ans)
