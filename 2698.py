@@ -15,3 +15,20 @@ s1*s2 + s2*s3 + s3*s4 + ... + sn-1 * sn
 출력
 각 테스트 케이스에 대해 인접한 비트의 개수가 k인 수열 S의 개수를 한 줄에 하나씩 출력한다. 이 값은 2,147,483,647보다 작거나 같다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+dp = [[[0, 0] for _ in range(102)] for _ in range(102)]
+dp[0][1] = [1, 1]
+
+for i in range(101):
+    for j in range(i+1, 101):
+        dp[i][j][0] = max(dp[i][j][0], dp[i][j-1][1] + dp[i][j-1][0])
+        dp[i][j][1] = max(dp[i][j][1], dp[i-1][j-1][1] + dp[i][j-1][0])
+
+T = int(input())
+while T:
+    T -= 1
+    n, k = map(int, input().split())
+    print(sum(dp[k][n]))
