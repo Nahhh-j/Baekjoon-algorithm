@@ -12,3 +12,12 @@
 출력
 각 테스트 케이스마다 3-동전수열이 몇 번 나타났는지를 출력한다. 뒤뒤뒤, 뒤뒤앞, 뒤앞뒤, 뒤앞앞, 앞뒤뒤, 앞뒤앞, 앞앞뒤, 앞앞앞 순서대로 공백으로 구분해서 출력한다.
 '''
+
+for _ in range(int(input())):
+    d = {"TTT": 0, "TTH": 0, "THT": 0, "THH": 0, "HTT": 0, "HTH": 0, "HHT": 0, "HHH": 0}
+    s = input()
+    for i in range(38):
+        d[s[i:i+3]] += 1
+    for t, n in d.items():
+        print(n, end=' ')
+    print()
