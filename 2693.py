@@ -11,3 +11,10 @@
 출력
 각 테스트 케이스에 대해 한 줄에 하나씩 배열 A에서 3번째 큰 값을 출력한다.
 '''
+
+T = int(input())
+
+for _ in range(T):
+    N = list(map(int, input().split()))
+	N.sort()
+    print(N[-3])
