@@ -18,3 +18,30 @@ B개의 공과 M층 짜리 빌딩에서 최악의 경우에 몇 번 공을 떨�
 출력
 각각의 데이터 세트에 대해 한 줄 씩, B, M에 대해 (최악의 경우에도)가장 적은 횟수의 시도 횟수를 공백으로 구분하여 출력한다.
 '''
+
+#include <iostream>
+using namespace std;
+int main(){
+  ios::sync_with_stdio(false), cin.tie(NULL);
+  register int P, B, M, dp[51][1001];
+  cin >> P;
+  for(register int p = 0; p < P; ++p) {
+    cin >> B >> M;
+    for(register int b = 1, m, mm; b <= B; ++b)
+      for(m = 1; m <= M; ++m){
+        if(b == 1) {
+          dp[b][m] = m;
+          continue;
+        }
+        if(m < b) {
+          dp[b][m] = dp[b - 1][m];
+          continue;
+        }
+        dp[b][m] = 99999999;
+        for(mm = 1; mm <= m; ++mm)
+          dp[b][m] = min(dp[b][m], 1 + max(dp[b - 1][mm - 1], dp[b][m - mm]));
+      }
+    cout << dp[B][M] << "\n";
+  }
+  return 0;
+}
