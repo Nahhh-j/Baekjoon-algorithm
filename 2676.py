@@ -17,3 +17,18 @@ R(n,0) = R(n,n) = 1
 출력
 각 테스트 케이스에 대해서 한 줄에 하나씩 R(n,m)을 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+def R(n, m):
+    if n<0 or m<0 or m>n:
+        return 0
+    if m == 0 or m == n:
+        return 1
+    a = n-m
+    return 1+a*m
+
+for _ in range(int(input())):
+    n, m = map(int, input().rstrip().split())
+    print(R(n, m))
