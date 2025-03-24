@@ -32,3 +32,20 @@ N명의 아이들이 임의의 순서로 줄을 서 있을 때, 번호 순서대
 출력
 첫째 줄에는 번호 순서대로 줄을 세우는데 옮겨지는 아이들의 최소 수를 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+d = [1]*(n+1)
+num = [0]
+for i in range(n):
+    num.append(int(input()))
+
+for i in range(1,n+1):
+    for j in range(1,i):
+        if num[j]<num[i]:
+            d[i]=max(d[i],d[j]+1)
+
+print(n-max(d))
