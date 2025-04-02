@@ -14,3 +14,31 @@ A와 B의 구성이 같다는 말은 A를 이루고 있는 각 자리수의 등�
 출력
 각 테스트 케이스에 대해서, 한 줄에 하나씩 A의 다음수를 출력한다. 만약, A의 다음수가 없을 때는 BIGGEST를 출력한다.
 '''
+
+from sys import stdin
+from itertools import permutations
+T = int(stdin.readline())
+
+for _ in range(T):
+    a = stdin.readline().rstrip()
+    num = int(a)
+    tmp = []
+    for n in a:
+        tmp.append(n)
+
+    comb = list(permutations(tmp, len(a)))
+    total = []
+    for arr in comb:
+        w = ''
+        for n in arr:
+            w += n
+        total.append(int(w))
+    
+    total.sort(reverse=True)
+
+    for i in range(len(total) - 1):
+        if total[i] == num:
+            print("BIGGEST")
+            break
+        if total[i + 1] == num:
+            print(total[i])
