@@ -19,3 +19,10 @@
 출력
 첫째 줄에 삼각 김밥 1,000그램 가격의 최저가를 출력한다. 정답과의 오차는 0.01까지 허용한다.
 '''
+
+X, Y = map(int, input().split())
+li = [X/Y]
+for _ in range(int(input())):
+    X, Y = map(int, input().split())
+    li.append(X/Y)
+print("%.2f" % (min(li)*1000))
