@@ -12,3 +12,9 @@
 출력
 입력으로 주어진 단어를 정부가 검열을 하면 어떻게 변하는지를 출력한다. 즉, 단어에서 CAMBRIDGE에 포함된 알파벳을 모두 지운 뒤 출력한다. 항상 정답의 길이는 0보다 크다.
 '''
+
+string = input()
+
+for i in "CAMBRIDGE":
+    string = string.replace(i,"")
+print(string)
