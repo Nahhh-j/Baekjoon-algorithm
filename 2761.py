@@ -13,3 +13,17 @@ D,H,a,b,c가 주어졌을 때, 로켓이 올라간 높이(반올림)를 계산�
 출력
 각각의 3개의 각에 대해 높이를 반올림 하여 정수로 출력한다.
 '''
+
+import sys; input = sys.stdin.readline
+from math import tan, radians
+
+D, H = map(float, input().split())
+while True:
+    a, b, c = map(float, input().split())
+    if not a:
+        break
+
+    a1 = tan(radians(a)) ** 2
+    a2 = tan(radians(b)) ** 2
+    a3 = tan(radians(c)) ** 2
+    print(format(((2 * D ** 2 * a1 * a2 * a3) / (a1 * a2 - 2 * a1 * a3 + a2 * a3)) ** 0.5 + H, '.0f'))
