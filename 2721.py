@@ -16,3 +16,8 @@ n이 주어졌을 때, W(n)을 구하는 프로그램을 작성하시오.
 출력
 각 테스트 케이스에 대해 W(n)을 한 줄에 하나씩 출력한다.
 '''
+
+for _ in range(int(input())):
+    n = int(input())
+    res = sum(k*sum(range(k+2)) for k in range(1, n+1))
+    print(res)
