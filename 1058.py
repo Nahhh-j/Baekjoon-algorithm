@@ -11,3 +11,21 @@ A와 B가 친구면, B와 A도 친구이고, A와 A는 친구가 아니다.
 출력
 첫째 줄에 가장 유명한 사람의 2-친구의 수를 출력한다.
 '''
+
+n = int(input())
+friends = [list(input()) for _ in range(n)]
+
+connected = [[0] * n for _ in range(n)]
+
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                continue
+            if friends[i][j] == "Y" or (friends[i][k] == "Y" and friends[k][j] == "Y"):
+                connected[i][j] = 1
+
+answer = 0
+for row in connected:
+    answer = max(answer, sum(row))
+print(answer)
