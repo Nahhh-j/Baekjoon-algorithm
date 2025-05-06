@@ -11,3 +11,41 @@ N개의 문자열 S1, S2, ..., SN이 주어진다. 크기가 N인 모든 순열 
 출력
 첫째 줄에 문제의 정답을 출력한다.
 '''
+
+import itertools
+n = int(input())
+words = []
+for _ in range(n):
+    words.append(input())
+k = int(input())
+
+def kmp(pattern, all_string):
+    table = [0 for _ in range(len(pattern))]
+    i = 0
+    for j in range(1, len(pattern)):
+        while i>0 and pattern[i]!=pattern[j]:
+            i = table[i-1]
+
+        if pattern[i]==pattern[j]:
+            i += 1
+            table[j] = i
+
+    count = -1
+    i = 0
+    for j in range(len(all_string)):
+        while i > 0 and pattern[i] != all_string[j]:
+            i = table[i-1]
+
+        if pattern[i] == all_string[j]:
+            i += 1
+            if i == len(pattern):
+                count += 1
+                i = table[i-1]
+    return count == k
+
+answer = 0
+permutations = list(itertools.permutations(words, n))
+for perm in permutations:
+    a = ''.join(list(perm))a
+    answer += kmp(a, a+a)
+print(answer)
