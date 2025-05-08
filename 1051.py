@@ -10,3 +10,19 @@ N×M크기의 직사각형이 있다. 각 칸에는 한 자리 숫자가 적혀 
 출력
 첫째 줄에 정답 정사각형의 크기를 출력한다.
 '''
+
+N, M = map(int,input().split())
+temp = [list(input()) for _ in range(N)]
+
+box=[]
+for i in range(N):
+    box.append(list(map(int, temp[i]))) 
+
+m = min(N,M)
+
+count = 0
+
+while count < (N-1):
+    for i in range(N):
+        for j in range(M):
+            if box[i][j] == box[i][j+m]
