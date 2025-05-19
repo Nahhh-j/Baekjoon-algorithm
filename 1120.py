@@ -16,3 +16,15 @@ A의 뒤에 아무 알파벳이나 추가한다.
 출력
 A와 B의 길이가 같으면서, A와 B의 차이를 최소가 되도록 했을 때, 그 차이를 출력하시오.
 '''
+
+a, b = input().split()
+
+answer = []
+for i in range(len(b) - len(a) + 1):
+    count = 0
+    for j in range(len(a)):
+        if a[j] != b[i + j]:
+            count += 1
+    answer.append(count)
+
+print(min(answer))
