@@ -13,3 +13,15 @@ N이 주어졌을 때, N의 사이클의 길이를 구하는 프로그램을 작
 출력
 첫째 줄에 N의 사이클 길이를 출력한다.
 '''
+
+cnt = 0
+num = int(input())
+n = num
+while True:
+	cnt += 1
+	new = (n // 10) + (n % 10)
+	n = (n % 10) * 10 + (new % 10)
+	if num == n:
+		break
+
+print(cnt)
