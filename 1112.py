@@ -17,3 +17,20 @@
 -1,000,000,000 ≤ x ≤ 1,000,000,000
 2 ≤ |b| ≤ 10
 '''
+
+import sys
+
+x, b = map(int, sys.stdin.readline().split())
+n = 0
+result = []
+
+while(x):
+    q, r = divmod(x, b)
+    if(r < 0):
+        r -= b
+        q += 1
+    result.append(r)
+    x = q
+
+result.reverse()
+print(result)
