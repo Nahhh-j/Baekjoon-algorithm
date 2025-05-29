@@ -23,3 +23,23 @@
 출력
 첫째 줄에 조건을 만족하는 빛의 세기의 총 합의 최솟값을 출력한다.
 '''
+
+a, b = map(int, input().split())
+c = 0
+for i in range(a,b+1):
+    if i == a:
+        if i % 2 == 0:
+            c = -i
+            print("-"+str(i),end="")
+        else:
+            c = i
+            print(i, end="")
+    else:
+        if i % 2 == 0:
+            c -= i
+            print("-"+str(i),end="")
+        else:
+            c += i
+            print("+"+str(i), end="")
+ 
+print("="+str(c))
