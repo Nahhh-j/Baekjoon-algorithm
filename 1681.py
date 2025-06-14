@@ -11,3 +11,21 @@
 출력
 첫째 줄에 민승이가 학생들에게 붙이는 라벨 중 가장 큰 수를 출력한다.
 '''
+
+N, L = map(int, input().split())
+
+label = 0
+count = 0
+number = 1
+
+while True:
+    if str(L) not in str(number):
+        label = number
+        count += 1
+
+    if count == N:
+        break
+
+    number += 1
+
+print(label)
