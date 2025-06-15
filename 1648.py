@@ -14,3 +14,32 @@ N과 M이 주어졌을 때, 격자판을 2x1크기의 도미노로 채우는 방
 출력
 첫째 줄에 주어진 격자판을 2x1크기의 도미노로 빈 공간이 없도록 채우는 방법의 수를 9901로 나눈 나머지를 출력한다.
 '''
+
+import sys
+
+dp = [[-1] * (1 << 14) for _ in range(14 ** 2)]
+
+def go(num, status):
+    
+    if num == n * m and status == 0:
+        return 1
+        
+    if num >= n * m:
+        return 0
+        
+    if dp[num][status] != -1:
+        return dp[num][status]
+    dp[num][status] = 0
+
+    if status & 1:
+        dp[num][status] = go(num + 1, status >> 1)
+        
+    else:
+        dp[num][status] = go(num + 1, status >> 1 | 1 << (m - 1))
+        if num % m != m - 1 and status & 2 == 0:
+            dp[num][status] += go(num + 2, status >> 2)
+    dp[num][status] %= 9901
+    return dp[num][status]
+
+n, m = map(int, sys.stdin.readline().split())
+print(go(0, 0))
