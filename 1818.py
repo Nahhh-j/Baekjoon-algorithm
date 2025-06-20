@@ -20,3 +20,38 @@
 출력
 동혁이가 책들을 옮겨야 하는 최소 횟수를 출력한다.
 '''
+
+import sys; input = sys.stdin.readline
+from bisect import bisect_left
+
+class LIS:
+    def __init__(self):
+        self.I = [0] * N
+        self.idx = 1
+        self.L = [A[0]]
+
+        for i in range(1, N):
+            
+            if self.L[-1] < A[i]:
+                self.I[i] = self.idx
+                self.idx += 1
+                self.L.append(A[i])
+        
+            else:
+                self.I[i] = bisect_left(self.L, A[i])
+                self.L[self.I[i]] = A[i]
+
+    def trace(self): 
+        self.result = [0] * self.idx
+        for i in range(N - 1, -1, -1):
+            if self.I[i] + 1 == self.idx:
+                self.idx -= 1
+                self.result[self.idx] = A[i]
+
+        print(*self.result)
+
+N = int(input())
+A = list(map(int, input().split()))
+
+lis = LIS()
+print(N - lis.idx)
