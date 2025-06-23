@@ -16,3 +16,42 @@ N과 가장 밑에 있는 숫자가 주어져 있을 때 가장 윗줄에 있는
 출력
 첫째 줄에 삼각형에서 가장 위에 들어갈 N개의 숫자를 빈 칸을 사이에 두고 출력한다. 답이 존재하지 않는 경우는 입력으로 주어지지 않는다.
 '''
+
+def DFS(K, ans):
+    global flag
+    
+    if flag or ans > F:
+        return
+    
+    if K == N:
+        if F == ans:
+            print(*answer)
+            flag = 1
+        return
+    
+    for i in range(1, N + 1):
+        if not check[i]:
+            check[i] = 1
+            answer[K] = i
+            DFS(K + 1, ans + (Mul[K] * i))
+            if flag:
+                break
+            check[i] = 0
+            
+
+N, F = map(int, input().split())
+
+Fact = [0] * N
+Mul = [0] * N
+check = [0] * (N + 1)
+answer = [0] * N
+
+Fact[0] = 1
+for i in range(1, N):
+    Fact[i] = Fact[i - 1] * i
+    
+for i in range(N):
+    Mul[i] = Fact[N - 1] // (Fact[N - 1 - i] * Fact[i])
+    
+flag = 0
+DFS(0, 0)
