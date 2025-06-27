@@ -13,3 +13,24 @@
 출력
 n개의 줄에 걸쳐, 조건을 만족하는 수열 중 오름차순으로 가장 앞에 오는 수열을 출력한다.
 '''
+
+n = int(input())
+S = [int(input()) for _ in range(n)]
+
+used = [False] * (n + 1)  
+result = []
+
+for i in range(n):
+    candidates = []
+    for d in [-1, 0, 1]:
+        val = S[i] + d
+        if 1 <= val <= n and not used[val]:
+            candidates.append(val)
+
+    candidates.sort()
+    selected = candidates[0]
+    result.append(selected)
+    used[selected] = True
+
+for num in result:
+    print(num)
