@@ -16,3 +16,19 @@
 출력
 동호를 만나는 순서대로 한 줄에 하나씩 선수의 번호를 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+print = sys.stdout.write
+
+N = int(input())
+players = []
+for i in range(N):
+    index = i+1
+    power, ring = map(int, input().split())
+    players.append((index, power, ring))
+
+players.sort(key=lambda x: (1-x[2])/x[1])
+
+for player in players:
+    print(str(players[0])+'\n')
