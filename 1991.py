@@ -17,3 +17,45 @@
 출력
 첫째 줄에 전위 순회, 둘째 줄에 중위 순회, 셋째 줄에 후위 순회한 결과를 출력한다. 각 줄에 N개의 알파벳을 공백 없이 출력하면 된다.
 '''
+
+from collections import defaultdict
+import sys
+
+def preorder_traversal(graph, start='A'):
+    left, right = graph[start]
+    print(start, end='')
+    if left is not None:
+        preorder_traversal(graph, left)
+    if right is not None:
+        preorder_traversal(graph, right)
+    return
+
+def inorder_traversal(graph, start='A'):
+    left, right = graph[start]
+    if left is not None:
+        inorder_traversal(graph, left)
+    print(start, end='')
+    if right is not None:
+        inorder_traversal(graph, right)
+    return
+
+def postorder_traversal(graph, start='A'):
+    left, right = graph[start]
+    if left is not None:
+        postorder_traversal(graph, left)
+    if right is not None:
+        postorder_traversal(graph, right)
+    print(start, end='')
+    return
+
+input = sys.stdin.readline
+graph = defaultdict(lambda: (None, None))
+for _ in range(int(input())):
+    root, left, right = map(lambda x: None if x == '.' else x, input().split())
+    graph[root] = (left, right)
+
+preorder_traversal(graph)
+print()
+inorder_traversal(graph)
+print()
+postorder_traversal(graph)
