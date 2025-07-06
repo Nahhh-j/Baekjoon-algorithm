@@ -13,3 +13,42 @@ map의 어떤 칸에 적혀 있는 숫자는, 그 칸과 인접해 있는 여덟
 출력
 N개의 줄에 걸쳐서 완성된 지뢰 찾기 map을 출력한다. 지뢰는 '*'로 출력하며. 10 이상인 경우는 'M'(Many)으로 출력하면 된다. map은 숫자 또는 'M' 또는 '*'로만 이루어져 있어야 한다.
 '''
+
+import sys
+
+N = int(sys.stdin.readline())
+
+mine_map = [[0 for _ in range(N)] for _ in range(N)]
+
+for i in range(N):
+    row = sys.stdin.readline().rstrip()
+
+    for j in range(N):
+        col = row[j]
+
+        if col == '.':
+            continue
+        
+        mine_count = int(col)
+        mine_map[i][j] = '*'
+        
+        k = 0 if i - 1 < 0 else i - 1
+        l = N - 1 if N <= i + 1 else i + 1
+        m = 0 if j - 1 < 0 else j - 1
+        n = N - 1 if N <= j + 1 else j + 1
+
+        for o in range(k, l + 1):
+            
+            for p in range(m, n + 1):
+                area = mine_map[o][p]
+                
+                if area == '*' or area == 'M':
+                    continue
+                
+                if 10 <= area + mine_count:
+                    mine_map[o][p] = 'M'
+                else:
+                    mine_map[o][p] += mine_count
+
+for map_row in mine_map:
+    print(''.join(map(str, map_row)))
