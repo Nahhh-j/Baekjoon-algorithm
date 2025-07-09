@@ -11,3 +11,13 @@
 출력
 첫째 줄에 최대로 전원에 연결될 수 있는 컴퓨터의 수를 출력한다.
 '''
+
+import sys
+
+num = int(sys.stdin.readline())
+sum = 1
+for i in range(num):
+    tempNum = int(sys.stdin.readline())
+    sum+=tempNum
+
+print(sum-num)
