@@ -36,3 +36,53 @@
 출력
 첫째 줄에 A와 B를 빈 칸을 사이에 두고 출력한다.
 '''
+
+grid = [input() for _ in range(10)]
+
+total_matches = 0
+
+for i in range(0, 10, 3):
+    for j in range(1, 9, 3):
+        if grid[i][j] == '-' and grid[i][j+1] == '-':
+            total_matches += 1
+
+for i in range(1, 9, 3):
+    for j in range(0, 10, 3):
+        if grid[i][j] == '|' and grid[i+1][j] == '|':
+            total_matches += 1
+
+square_count = 0
+
+for size in range(1, 4):
+    for row in range(0, 3 - size + 1):
+        for col in range(0, 3 - size + 1):
+            ok = True
+
+            for k in range(size):
+                i = row * 3
+                j = col * 3 + 1 + 3 * k
+                if not (grid[i][j] == '-' and grid[i][j+1] == '-'):
+                    ok = False
+
+            for k in range(size):
+                i = (row + size) * 3
+                j = col * 3 + 1 + 3 * k
+                if not (grid[i][j] == '-' and grid[i][j+1] == '-'):
+                    ok = False
+
+            for k in range(size):
+                i = row * 3 + 1 + 3 * k
+                j = col * 3
+                if not (grid[i][j] == '|' and grid[i+1][j] == '|'):
+                    ok = False
+
+            for k in range(size):
+                i = row * 3 + 1 + 3 * k
+                j = (col + size) * 3
+                if not (grid[i][j] == '|' and grid[i+1][j] == '|'):
+                    ok = False
+
+            if ok:
+                square_count += 1
+
+print(24 - total_matches, square_count)
