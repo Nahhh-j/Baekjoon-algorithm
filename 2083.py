@@ -11,3 +11,12 @@
 출력
 입력 받은 각 회원에 대해 이름과 분류를 출력한다. 성인부 회원이면 'Senior', 청소년부 회원이면 'Junior'를 출력한다.
 '''
+
+while True:
+    name, age, weight = input().split()
+    if '#' in name:
+        break
+    if int(age) > 17 or int(weight) >= 80:
+        print(f"{name} Senior")
+    else:
+        print(f"{name} Junior")
