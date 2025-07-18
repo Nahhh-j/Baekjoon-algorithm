@@ -31,3 +31,117 @@ L로 짠 프로그램이 주어졌을 때, 그 프로그램이 최대 몇 번이
 출력
 첫째 줄에 최대 출력 회수를 출력한다. 답은 항상 1,000,000,000이하이며, 이를 넘어가는 경우는 무한 번 수행되는 경우로 infinity를 출력하도록 한다.
 '''
+
+import sys
+import threading
+
+sys.setrecursionlimit(1 << 25)
+
+def main():
+    N = int(sys.stdin.readline())
+    code = [None] * (N + 1)
+    loops = {}
+    parent_loop = [None] * (N + 1)
+    loop_stack = []
+
+    for i in range(1, N + 1):
+        parts = sys.stdin.readline().strip().split()
+        if not parts:
+            continue
+        cmd = parts[0]
+        if cmd == 'loop':
+            l, c = int(parts[1]), int(parts[2])
+            code[i] = ('loop', l, c)
+        elif cmd == 'ifgo':
+            code[i] = ('ifgo', int(parts[1]))
+        elif cmd == 'jump':
+            code[i] = ('jump', int(parts[1]))
+        elif cmd == 'pass':
+            code[i] = ('pass', )
+        elif cmd == 'die':
+            code[i] = ('die', )
+        else:
+            raise ValueError("Unknown command")
+
+    for i in range(1, N + 1):
+        instr = code[i]
+        if instr[0] == 'loop':
+            l, _ = instr[1], instr[2]
+            loops[i] = (l, i)
+            for j in range(l, i + 1):
+                parent_loop[j] = (l, i)
+
+    visited = [0] * (N + 1)
+    dp = [None] * (N + 1)
+    on_stack = [False] * (N + 1)
+    infinity = False
+
+    def dfs(u):
+        nonlocal infinity
+        if visited[u] == 1:
+            infinity = True
+            return -1
+        if visited[u] == 2:
+            return dp[u]
+
+        visited[u] = 1
+        on_stack[u] = True
+        instr = code[u]
+        result = 1
+
+        def in_same_loop(x, y):
+            return parent_loop[x] == parent_loop[y]
+
+        if instr[0] == 'ifgo':
+            tgt = instr[1]
+            res1, res2 = 0, 0
+            if in_same_loop(u, tgt):
+                res1 = dfs(tgt)
+            else:
+                res1 = -1
+            if u + 1 <= N and in_same_loop(u, u + 1):
+                res2 = dfs(u + 1)
+            else:
+                res2 = -1
+            if res1 == -1 or res2 == -1:
+                infinity = True
+            result += max(res1, res2)
+
+        elif instr[0] == 'jump':
+            tgt = instr[1]
+            if in_same_loop(u, tgt):
+                result += dfs(tgt)
+            else:
+                infinity = True
+
+        elif instr[0] == 'pass':
+            if u + 1 <= N:
+                result += dfs(u + 1)
+
+        elif instr[0] == 'die':
+            pass
+
+        elif instr[0] == 'loop':
+            l, c = instr[1], instr[2]
+            loop_range = range(l, u + 1)
+            total = 0
+            for line in loop_range:
+                total += dfs(line)
+                if infinity:
+                    return -1
+            result = total * (c - 1)
+            if u + 1 <= N:
+                result += dfs(u + 1)
+
+        visited[u] = 2
+        dp[u] = result
+        on_stack[u] = False
+        return result
+
+    ans = dfs(1)
+    if infinity or ans > 1_000_000_000:
+        print("infinity")
+    else:
+        print(ans)
+
+threading.Thread(target=main).start()
