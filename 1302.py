@@ -11,3 +11,26 @@
 출력
 첫째 줄에 가장 많이 팔린 책의 제목을 출력한다. 만약 가장 많이 팔린 책이 여러 개일 경우에는 사전 순으로 가장 앞서는 제목을 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+sell = {}
+
+for i in range(n):
+    name = input()
+    if name not in sell:
+        sell[name] = 1
+    else:
+        sell[name] += 1
+        
+max_value = max(sell.values())
+
+best = []
+for key, value in sell.items():
+    if value == max_value:
+        best.append(key)
+
+best = sorted(best)
+print(best[0])
