@@ -25,3 +25,18 @@
 출력
 첫째 줄에 구하고자 하는 가장 작은 k값을 출력한다.
 '''
+
+n=int(input())
+nums=[]
+for _ in range(n):
+    nums.append(str(input()))
+for i in range(1, len(nums[0])+1):
+    results=[]
+    for j in range(n):
+        if nums[j][-i:] in results:
+            break
+        else:
+            results.append(nums[j][-i:])
+    if len(results)==n:
+        print(i)
+        break
