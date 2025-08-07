@@ -14,3 +14,20 @@ N, P, Q, X, Y가 주어질 때, AN을 구하는 프로그램을 작성하시오.
 출력
 첫째 줄에 AN을 출력한다.
 '''
+
+import sys
+sys.setrecursionlimit(10 ** 7)
+
+N, P, Q, X, Y = map(int, input().split())
+
+cache = {}
+def dp(n) :
+    if n <= 0 :
+        return 1
+    if n in cache :
+        return cache[n]
+    ret = dp(n / P - X) + dp(n / Q - Y)
+    cache[n] = ret
+    return ret
+
+print(dp(N))
