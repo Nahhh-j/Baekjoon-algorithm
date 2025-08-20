@@ -13,3 +13,23 @@ N개의 자연수 중에서 M개를 고른 수열
 한 줄에 하나씩 문제의 조건을 만족하는 수열을 출력한다. 중복되는 수열을 여러 번 출력하면 안되며, 각 수열은 공백으로 구분해서 출력해야 한다.
 수열은 사전 순으로 증가하는 순서로 출력해야 한다.
 '''
+
+N, M = map(int, input().split())
+numbers = [int(x) for x in input().split()]
+
+numbers.sort()
+
+def backtracking(depth):
+    if depth == M:
+        print(' '.join(map(str,box)))
+        return
+
+    for i in range(N):
+        if numbers[i] in box:
+            continue
+        box.append(numbers[i])
+        backtracking(depth + 1)
+        box.pop()
+
+box = []
+backtracking(0)
