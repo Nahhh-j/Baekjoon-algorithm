@@ -12,3 +12,16 @@ N+2번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트
 출력
 첫 번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트 주소의 비밀번호를 차례대로 각 줄에 하나씩 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+add = {}
+
+for _ in range(N):
+    site, ps = input().split()
+    add[site] = ps
+
+for _ in range(M):
+    print(add[input().rstrip()])
