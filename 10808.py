@@ -10,3 +10,11 @@
 출력
 단어에 포함되어 있는 a의 개수, b의 개수, …, z의 개수를 공백으로 구분해서 출력한다.
 '''
+
+n = input()
+lst = [0]*26
+
+for i in range(n):
+	lst[ord(i)-97] = n.count(i)
+for i in lst:
+	print(i, end=" ")
