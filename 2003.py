@@ -10,3 +10,26 @@ N개의 수로 된 수열 A[1], A[2], …, A[N] 이 있다. 이 수열의 i번�
 출력
 첫째 줄에 경우의 수를 출력한다.
 '''
+
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+
+left, right = 0, 1
+cnt = 0
+while right<=N and left<=right:
+
+    sum_nums = nums[left:right]
+    total = sum(sum_nums)
+
+    if total == M:
+        cnt += 1
+
+        right += 1
+
+    elif total < M:
+        right += 1
+
+    else:
+        left += 1
+
+print(cnt)
