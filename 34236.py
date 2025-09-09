@@ -12,3 +12,7 @@
 출력
 첫째 줄에 다음 대회가 열릴 것으로 예상되는 년도를 출력한다.
 '''
+
+n = int(input())
+years = list(map(int, input().split()))
+print(years[-1] + (years[1] - years[0]))
