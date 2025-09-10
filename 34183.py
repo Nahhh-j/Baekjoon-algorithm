@@ -13,3 +13,7 @@
 출력
 첫 번째 줄에 필요한 최소 금액을 출력한다. 단, 의자를 구매할 필요가 없는 경우 $0$을 출력한다.
 '''
+
+n, m, a, b = map(int, input().split())
+res = (n * 3 - m) * a + b if n * 3 - m > 0 else 0
+print(res)
