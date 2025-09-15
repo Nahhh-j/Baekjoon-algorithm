@@ -12,3 +12,9 @@
 출력
 첫째 줄에 거절당하는 사람의 수를 출력한다.
 '''
+
+n = int(input())
+num = list(map(int, input().split()))
+numSet = set(num)
+
+print(len(num) - len(numSet))
