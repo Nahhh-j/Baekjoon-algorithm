@@ -16,3 +16,31 @@ $S$와 $N$의 각 자릿수는 $0$ 이상 $9$ 이하이며 $0$으로 시작할 �
 여우가 $S$를 $N$으로 읽을 수 있도록 하기 위해 $0$으로 바꿔야 할 $S$의 자릿수의 최소 개수를 출력한다.
 만약 어떠한 방법으로도 $N$으로 읽을 수 없다면 -1을 출력한다.
 '''
+
+def solve():
+    import sys
+    input = sys.stdin.readline
+    
+    S = input().strip()
+    N = input().strip()
+    n, m = len(S), len(N)
+    
+    INF = 10**9
+    dp = [[INF] * (m+1) for _ in range(n+1)]
+    dp[n][m] = 0
+    
+    for i in range(n, -1, -1):
+        for j in range(m, -1, -1):
+            if i < n and j < m:
+                cost = 0 if S[i] == N[j] else 1
+                dp[i][j] = min(dp[i][j], dp[i+1][j+1] + cost)
+            if i+1 < n and j < m:
+                fox_sum = (int(S[i]) + int(S[i+1])) % 10
+                cost = 0 if str(fox_sum) == N[j] else 1
+                dp[i][j] = min(dp[i][j], dp[i+2][j+1] + cost)
+    
+    ans = dp[0][0]
+    if ans >= INF:
+        print(-1)
+    else:
+        print(ans)
