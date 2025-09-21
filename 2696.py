@@ -11,3 +11,45 @@
 출력
 각 테스트 케이스에 대해 첫째 줄에 출력하는 중앙값의 개수를 출력하고, 둘째 줄에는 홀수 번째 수를 읽을 때 마다 구한 중앙값을 차례대로 공백으로 구분하여 출력한다. 이때, 한 줄에 10개씩 출력해야 한다.
 '''
+
+from sys import stdin
+from heapq import heappush, heappop
+input = lambda: stdin.readline().rstrip()
+
+
+def get_median() -> None:
+    left, right, ans = [], [], [nums[0]]
+    mid = nums[0]
+
+    for i, num in enumerate(nums[1:], 1):
+        if num < mid:
+            heappush(left, -num)
+        else:
+            heappush(right, num)
+
+        if i % 2 == 0:
+            if len(left) > len(right):
+                heappush(right, mid)
+                mid = -heappop(left)
+            elif len(left) < len(right):
+                heappush(left, -mid)
+                mid = heappop(right)
+            ans.append(mid)
+
+    print(M // 2 + 1)
+    for i, num in enumerate(ans):
+        if i != 0 and i % 10 == 0:
+            print()
+        print(num, end=' ')
+    print()
+
+
+if __name__ == "__main__":
+    T = int(input())
+    for _ in range(T):
+        M = int(input())
+        nums = []
+        for _ in range(M // 10 + 1):
+            nums += list(map(int, input().split()))
+
+        get_median()
