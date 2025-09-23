@@ -15,3 +15,44 @@
 출력
 첫째 줄에 잘라낸 두부가격 합의 최댓값을 출력한다.
 '''
+
+import sys
+sys.setrecursionlimit(10000)
+
+n, m = map(int, sys.stdin.readline().split())
+tofu = [list(sys.stdin.readline().rstrip()) for _ in range(n)]
+
+cost = dict().fromkeys(['A', 'B', 'C', 'D', 'F'])
+for i in cost:
+    cost[i] = dict().fromkeys(['A', 'B', 'C', 'D', 'F'], 0)
+temp = [[10,8,7,5,1],[8,6,4,3,1],[7,4,3,2,1],[5,3,2,2,1],[1,1,1,1,0]]
+for idx_i, i in enumerate(['A', 'B', 'C', 'D', 'F']):
+    for idx_j, j in enumerate(['A', 'B', 'C', 'D', 'F']):
+        cost[i][j] = temp[idx_i][idx_j]
+
+dp = [[-1] * (1 << m) for _ in range(n * m)]
+one_dim = [tofu[i][j] for i in range(n) for j in range(m)]
+
+def go(num, bit):
+    if num >= n * m:
+        return 0
+    if dp[num][bit] != -1:
+        return dp[num][bit]
+    dp[num][bit] = 0
+
+    d = go(num + 1, bit >> 1)
+    dp[num][bit] = max(dp[num][bit], d)
+
+    if bit & 1 == 1:
+        a = go(num + 1, bit >> 1)
+        dp[num][bit] = max(dp[num][bit], a)
+    else:
+        if num + m < n * m and bit & 1 == 0:
+            b = go(num + 1, bit >> 1 | (1 << (m - 1)))
+            dp[num][bit] = max(dp[num][bit], b + cost[one_dim[num]][one_dim[num + m]])
+        if num % m != (m - 1) and bit & 2 == 0:
+            c = go(num + 2, bit >> 2)
+            dp[num][bit] = max(dp[num][bit], c + cost[one_dim[num]][one_dim[num + 1]])
+    return dp[num][bit]
+
+print(go(0,0))
