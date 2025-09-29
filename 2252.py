@@ -13,5 +13,34 @@ N명의 학생들을 키 순서대로 줄을 세우려고 한다. 각 학생의 
 첫째 줄에 학생들을 앞에서부터 줄을 세운 결과를 출력한다. 답이 여러 가지인 경우에는 아무거나 출력한다.
 '''
 
-x = int(input())
-print(f'{2**(-x):.{x}f}')
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+graph = [[] for _ in range(N+1)]
+inDegree = [0]*(N+1)
+
+for _ in range(M):
+    A, B = map(int, input().split())
+    graph[A].append(B)
+    inDegree[B] += 1
+
+q = deque()
+
+for s in range(1, N+1):
+    if inDegree[s] == 0:
+        q.append(s)
+
+ans = []
+
+while q:
+    s = q.popleft()
+    ans.append(s)
+    
+    for adj_s in graph[s]:
+        inDegree[adj_s] -= 1
+        if inDegree[adj_s] == 0:
+            q.append(adj_s)
+
+print(*ans, sep=" ")
