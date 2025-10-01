@@ -17,3 +17,34 @@ N개의 문제는 모두 풀어야 한다.
 출력
 첫째 줄에 문제 번호를 나타내는 1 이상 N 이하의 정수들을 민오가 풀어야 하는 순서대로 빈칸을 사이에 두고 출력한다.
 '''
+
+import sys
+import heapq
+
+n, m = map(int, sys.stdin.readline().rstrip().split())
+
+answer = []
+graph = [[] for _ in range(n + 1)]
+inDegree = [0 for _ in range(n+1)]
+queue = []
+
+
+for i in range(m):
+    first, second = map(int, sys.stdin.readline().rstrip().split())
+    graph[first].append(second)
+    inDegree[second] += 1
+
+for i in range(1, n + 1):
+    if inDegree[i] == 0:
+        heapq.heappush(queue, i)
+
+while queue:
+    tmp = heapq.heappop(queue)
+    answer.append(tmp)
+    for i in graph[tmp]:
+        inDegree[i] -= 1
+        if inDegree[i] == 0:
+            heapq.heappush(queue, i)
+
+
+print(" ".join(map(str, answer)))
