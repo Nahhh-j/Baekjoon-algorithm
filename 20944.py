@@ -27,3 +27,5 @@ $\left\lfloor\frac{N}{2}\right\rfloor$인 접두사와 접미사가 동일한 �
  $1 \leq N \leq 1\,000\,000$ 
 입력으로 주어지는 모든 수는 정수다.
 '''
+
+print('a'*int(input()))
