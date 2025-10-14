@@ -14,3 +14,21 @@ SW 수열은 \(1\) 이상 \(N\) 이하의 정수로 이루어져 있고, 모든 
 출력
 첫째 줄에 길이가 \(N\)인 SW 수열을 아무거나 하나 출력한다. SW 수열은 공백으로 구분해서 출력해야 한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n = int(input().strip())
+L, R = 1, n
+ans = []
+
+while L < R:
+    ans.append(L)
+    ans.append(R)
+    L += 1
+    R -= 1
+
+if L == R:
+    ans.append(L)
+
+print(*ans)
