@@ -16,3 +16,12 @@
 출력
 첫째 줄에 점수가 가장 높은 순열에 해당하는 $N$개의 정수를 공백으로 구분해서 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+odds  = list(range(1, n + 1, 2))  
+evens = list(range(2, n + 1, 2))[::-1]
+ans = odds + evens
+print(*ans)
