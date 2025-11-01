@@ -20,3 +20,43 @@
 출력
 2번 쿼리가 주어질 때마다, 알맞게 출력하시오.
 '''
+
+import sys
+sys.setrecursionlimit(2 * 10**5)
+input = sys.stdin.readline
+
+class Fenwick:
+    def __init__(s, n): s.t = [0]*(n+1)
+    def u(s, i, w):
+        while i < len(s.t): s.t[i] += w; i += i & -i
+    def q(s, i):
+        r=0
+        while i>0: r+=s.t[i]; i-=i&-i
+        return r
+    def ru(s, l, r, w): s.u(l,w); s.u(r+1,-w)
+
+n,m=map(int,input().split())
+p=list(map(int,input().split()))
+g=[[] for _ in range(n+1)]
+for i in range(2,n+1): g[p[i-1]].append(i)
+
+In,Out=[0]*(n+1),[0]*(n+1)
+t=0
+def dfs(v):
+    global t
+    t+=1; In[v]=t
+    for x in g[v]: dfs(x)
+    Out[v]=t
+dfs(1)
+
+D,U=Fenwick(n),Fenwick(n)
+d=0
+for _ in range(m):
+    q=list(map(int,input().split()))
+    if q[0]==1:
+        _,i,w=q
+        (D if d==0 else U).ru(In[i],Out[i] if d==0 else In[i],w)
+    elif q[0]==2:
+        print(D.q(In[q[1]])+U.q(In[q[1]]))
+    else:
+        d^=1
