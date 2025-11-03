@@ -18,3 +18,16 @@
 첫째 줄에 싼 요금제의 이름을 출력한다. 그 후에 공백을 사이에 두고 요금이 몇 원 나오는지 출력한다. 만약 두 요금제의 요금이 모두 같으면 영식을 먼저 쓰고 민식을 그 다음에 쓴다.
 영식은 Y로, 민식은 M으로 출력한다.
 '''
+
+N = int(input())
+li = list(map(int, input().split()))
+y = m = 0
+for n in li:
+    y += (n//30 + 1) * 10
+    m += (n//60 + 1) * 15
+if m == y:
+    print("Y M", m)
+elif m < y:
+    print("M", m)
+else:
+    print("Y", y)
