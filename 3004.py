@@ -12,3 +12,12 @@
 출력
 첫째 줄에 상근이가 얻을 수 있는 조각의 최댓값을 출력한다.
 '''
+
+N = int(input())
+ans = 1
+a = 1
+for i in range(N):
+    ans += a
+    if i%2 == 0:
+        a += 1
+print(ans)
