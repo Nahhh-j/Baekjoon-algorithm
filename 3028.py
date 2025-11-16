@@ -16,3 +16,17 @@
 출력
 공이 가장 왼쪽 컵에 있으면 1, 중앙에 있는 컵에 있으면 2, 오른쪽에 있는 컵에 있으면 3을 출력한다.
 '''
+
+N = list(input())
+ball = 1
+for i in N:
+    if i == 'A':
+        if ball == 1: ball = 2
+        elif ball == 2 : ball = 1
+    elif i == 'B':
+        if ball == 2: ball = 3
+        elif ball == 3 : ball = 2
+    else:
+        if ball == 1: ball = 3
+        elif ball == 3 : ball = 1
+print(ball)
