@@ -19,3 +19,9 @@
 출력
 입력으로 주어지는 각각의 성냥에 대해서, 박스안에 들어갈 수 있으면 "DA" 없으면 "NE"를 출력한다.
 '''
+
+N, W, H = map(int, input().split())
+d = (W**2 + H**2)**0.5
+for _ in range(N):
+    n = int(input())
+    print("DA" if n <= d else "NE")
