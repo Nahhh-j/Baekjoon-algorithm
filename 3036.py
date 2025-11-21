@@ -14,3 +14,16 @@
 출력
 출력은 총 N-1줄을 해야 한다. 첫 번째 링을 제외한 각각의 링에 대해서, 첫 번째 링을 한 바퀴 돌리면 그 링은 몇 바퀴 도는지 기약 분수 형태 A/B로 출력한다.
 '''
+
+def gcd(a, b):
+    while(b != 0):
+        n = a%b
+        a = b
+        b = n
+    return a
+
+n = int(input())
+li = list(map(int, input().split()))
+for i in range(1, n):
+    g = gcd(li[0], li[i])
+    print('{0}/{1}'.format(li[0]//g, li[i]//g))
