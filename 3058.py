@@ -11,3 +11,11 @@
 출력
 각 테스트 데이터에 대해, 7개 자연수 중 짝수의 합과 최솟값을 공백으로 구분하여 한 줄에 하나씩 출력한다.
 '''
+
+for _ in range(int(input())):
+    li = list(map(int, input().split()))
+    even_li = []
+    for n in li:
+        if n%2 == 0:
+            even_li.append(n)
+    print(sum(even_li), min(even_li))
