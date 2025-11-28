@@ -12,3 +12,21 @@
 출력
 각 테스트 케이스에 대해 입력으로 주어지는 N가지 동전으로 금액 M을 만드는 모든 방법의 수를 한 줄에 하나씩 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+T = int(input())
+for _ in range(T):
+    n = int(input())
+    coins = list(map(int, input().rsplit()))
+    want = int(input())
+
+    dp = [0 for _ in range(want+1)]
+    dp[0] = 1
+
+    for i in range(n):
+        for j in range(coins[i], want+1):
+            dp[j] += dp[j-coins[i]]
+
+    print(dp[want])
