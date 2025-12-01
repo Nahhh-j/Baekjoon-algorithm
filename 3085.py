@@ -14,3 +14,44 @@
 출력
 첫째 줄에 상근이가 먹을 수 있는 사탕의 최대 개수를 출력한다.
 '''
+
+def check(board, N):
+    max_count = 1
+    for i in range(N):
+        cnt = 1
+        for j in range(1, N):
+            if board[i][j] == board[i][j-1]:
+                cnt += 1
+            else:
+                max_count = max(max_count, cnt)
+                cnt = 1
+        max_count = max(max_count, cnt)
+    for j in range(N):
+        cnt = 1
+        for i in range(1, N):
+            if board[i][j] == board[i-1][j]:
+                cnt += 1
+            else:
+                max_count = max(max_count, cnt)
+                cnt = 1
+        max_count = max(max_count, cnt)
+    return max_count
+
+def main():
+    N = int(input().strip())
+    board = [list(input().strip()) for _ in range(N)]
+    answer = 0
+    for i in range(N):
+        for j in range(N):
+            if j + 1 < N and board[i][j] != board[i][j+1]:
+                board[i][j], board[i][j+1] = board[i][j+1], board[i][j]
+                answer = max(answer, check(board, N))
+                board[i][j], board[i][j+1] = board[i][j+1], board[i][j]
+            if i + 1 < N and board[i][j] != board[i+1][j]:
+                board[i][j], board[i+1][j] = board[i+1][j], board[i][j]
+                answer = max(answer, check(board, N))
+                board[i][j], board[i+1][j] = board[i+1][j], board[i][j]
+    print(answer)
+
+if __name__ == "__main__":
+    main()
