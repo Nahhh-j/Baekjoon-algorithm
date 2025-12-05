@@ -16,3 +16,32 @@
 출력
 하나의 줄에 아침까지 살아있는 양과 늑대의 수를 의미하는 두 정수를 출력한다.
 '''
+
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+
+def bfs(x, y):
+    q = deque([(x, y)])
+    o = 0
+    v = 0
+
+    while q:
+        x, y = q.popleft()
+
+        for i in range(5):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny]:
+                if graph[nx][ny] == '#':
+                    continue
+                elif graph[nx][ny] == 'v':
+                    v += 1
+                elif graph[nx][ny] == 'o':
+                    o += 1
+                q.append((nx, ny))
+                visited[nx][ny] = 1
+
+    return o, v
