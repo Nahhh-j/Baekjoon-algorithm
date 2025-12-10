@@ -10,3 +10,11 @@
 출력
 각 테스트 케이스에 대해서, 해밍 거리를 계산한 뒤, "Hamming distance is X."라고 출력한다. X는 해밍 거리이다.
 '''
+
+for _ in range(int(input())):
+    a = input(); b = input()
+    cnt = 0
+    for i in range(len(a)):
+        if a[i] != b[i]:
+            cnt += 1
+    print(f"Hamming distance is {cnt}.")
