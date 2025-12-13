@@ -10,3 +10,11 @@
 출력
 각 테스트 케이스에 대해서, 1의 위치를 공백으로 구분해서 줄 하나에 출력한다. 위치가 낮은 것부터 출력한다.
 '''
+
+T = int(input())
+
+for _ in range(T):
+    n = bin(int(input()))[2:]
+    for i in range(len(n)):
+        if n[-i-1] == '1':
+            print(i, end = " ")
