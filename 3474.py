@@ -14,3 +14,17 @@
 출력
 각 줄마다 N!의 오른쪽 끝에 있는 0의 개수를 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+T = int(input())
+
+for _ in range(T):
+    N = int(input())
+    count = 0
+    d = 5
+    while d <= N:
+        count += N // d
+        d *= 5
+    print(count)
