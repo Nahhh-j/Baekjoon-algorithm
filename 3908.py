@@ -11,3 +11,33 @@
 출력
 각 테스트 케이스에 해당하는 경우의 수를 한 줄에 하나씩 출력한다. 정답은 항상 231보다 작다.
 '''
+
+import sys
+
+input = sys.stdin.readline
+
+MAX_N = 1120
+MAX_K = 14
+
+is_prime = [True] * (MAX_N + 1)
+is_prime[0] = is_prime[1] = False
+
+for i in range(2, int(MAX_N ** 0.5) + 1):
+    if is_prime[i]:
+        for j in range(i * i, MAX_N + 1, i):
+            is_prime[j] = False
+
+primes = [i for i in range(2, MAX_N + 1) if is_prime[i]]
+
+dp = [[0] * (MAX_N + 1) for _ in range(MAX_K + 1)]
+dp[0][0] = 1
+
+for p in primes:
+    for k in range(MAX_K, 0, -1):
+        for n in range(MAX_N, p - 1, -1):
+            dp[k][n] += dp[k - 1][n - p]
+
+T = int(input())
+for _ in range(T):
+    n, k = map(int, input().split())
+    print(dp[k][n])
