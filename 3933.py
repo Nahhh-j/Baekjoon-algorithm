@@ -12,3 +12,32 @@ N이 25일 때 4개 이하의 제곱수의 합으로 표현 할 수 있는 경�
 출력
 각 테스트 케이스에 대해서 입력으로 주어진 n을 많아야 4개의 제곱수로 나타내는 경우의 수를 출력한다.
 '''
+
+import sys
+
+MAX = 1 << 15
+sq = [i*i for i in range(1, int(MAX**0.5) + 1)]
+
+def count(n):
+    s = set(sq)
+    cnt = 0
+    for i in range(len(sq)):
+        a = sq[i]
+        if a > n: break
+        if a == n: cnt += 1
+        for j in range(i, len(sq)):
+            b = a + sq[j]
+            if b > n: break
+            if b == n: cnt += 1
+            for k in range(j, len(sq)):
+                c = b + sq[k]
+                if c > n: break
+                if c == n: cnt += 1
+                if n - c in s and n - c >= sq[k]:
+                    cnt += 1
+    return cnt
+
+for line in sys.stdin:
+    n = int(line)
+    if n == 0: break
+    print(count(n))
