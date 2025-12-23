@@ -27,3 +27,17 @@ P1 = 5, P2 = 2, P3 = 8, P4 = 10인 경우에는 카드가 2개 들어있는 카�
 출력
 첫째 줄에 민규가 카드 N개를 갖기 위해 지불해야 하는 금액의 최솟값을 출력한다.
 '''
+
+import sys
+
+N = int(sys.stdin.readline())
+P = list(map(int, sys.stdin.readline().split()))
+
+dp = [0] * (N + 1)
+
+for i in range(1, N + 1):
+    dp[i] = float('inf')
+    for j in range(1, i + 1):
+        dp[i] = min(dp[i], dp[i - j] + P[j - 1])
+
+print(dp[N])
