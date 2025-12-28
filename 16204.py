@@ -12,3 +12,6 @@
 출력
 첫째 줄에 앞 면과 뒷 면에 같은 모양이 적혀있는 카드의 최대 개수를 출력한다.
 '''
+
+N, M, K = map(int, input().split())
+print(min(M, K) + N - max(M, K))
