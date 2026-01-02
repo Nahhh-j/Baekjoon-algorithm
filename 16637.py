@@ -12,3 +12,24 @@
 출력
 첫째 줄에 괄호를 적절히 추가해서 얻을 수 있는 결과의 최댓값을 출력한다. 정답은 231보다 작고, -231보다 크다.
 '''
+
+import sys
+
+input = sys.stdin.readline
+
+N = int(input())
+exp = input()
+ans = float("-inf")
+
+def dfs(i, val):
+  global ans
+  if i >= N:
+    ans = max(ans, eval(val))
+    return
+  if i + 4 <= N:
+    dfs(i + 4, str(eval(str(val) + exp[i] + str(eval(exp[i+1:i + 4])))))
+  if i + 2 <= N:
+    dfs(i + 2, str(eval(val + exp[i:i + 2])))
+
+dfs(1, exp[0])
+print(ans)
