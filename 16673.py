@@ -18,3 +18,11 @@
 출력
 첫 번째 줄에 수빈이가 C년 동안 수집한 와인 수를 출력한다.
 '''
+
+C,K,P = map(int, input().split())
+answer = 0
+
+for i in range(1, C + 1):    
+    answer += K*i + P*(i**2)
+    
+print(answer)
