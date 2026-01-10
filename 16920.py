@@ -15,3 +15,58 @@
 출력
 플레이어 1이 가진 성의 수, 2가 가진 성의 수, ..., P가 가진 성의 수를 공백으로 구분해 출력한다.
 '''
+
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+N, M, P = map(int, input().split())
+S = list(map(int, input().split()))
+
+board = [list(input().strip()) for _ in range(N)]
+
+queues = [deque() for _ in range(P)]
+
+for i in range(N):
+    for j in range(M):
+        if board[i][j].isdigit():
+            p = int(board[i][j]) - 1
+            queues[p].append((i, j))
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+while True:
+    expanded = False
+
+    for p in range(P):
+        speed = S[p]
+        q = queues[p]
+
+        for _ in range(speed):
+            size = len(q)
+            if size == 0:
+                break
+
+            for _ in range(size):
+                x, y = q.popleft()
+
+                for d in range(4):
+                    nx, ny = x + dx[d], y + dy[d]
+
+                    if 0 <= nx < N and 0 <= ny < M:
+                        if board[nx][ny] == '.':
+                            board[nx][ny] = str(p + 1)
+                            q.append((nx, ny))
+                            expanded = True
+
+    if not expanded:
+        break
+
+result = [0] * P
+for i in range(N):
+    for j in range(M):
+        if board[i][j].isdigit():
+            result[int(board[i][j]) - 1] += 1
+
+print(*result)
