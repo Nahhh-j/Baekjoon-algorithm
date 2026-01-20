@@ -11,3 +11,11 @@
 출력
 첫째 줄에 그룹의 최소 개수를 출력한다.
 '''
+
+N = int(input())
+groups = []
+for i in range(N):
+    word = sorted(list(input()))
+    if word not in groups:
+        groups.append(word)
+print(len(groups))
