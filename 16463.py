@@ -10,3 +10,26 @@
 출력
 첫째 줄에 2019년부터 N년까지 누적되는 13일의 금요일의 수를 출력한다.
 '''
+
+def is_leap(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+def count_friday_13(N):
+    day_of_week = 1
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    count = 0
+
+    for year in range(2019, N + 1):
+        for month in range(12):
+            if (day_of_week + 12) % 7 == 4:
+                count += 1
+
+            days = month_days[month]
+            if month == 1 and is_leap(year):
+                days += 1
+            day_of_week = (day_of_week + days) % 7
+
+    return count
+
+N = int(input())
+print(count_friday_13(N))
