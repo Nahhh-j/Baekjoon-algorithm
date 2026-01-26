@@ -12,3 +12,23 @@
 출력
 읽을 수 있는 최대 페이지 수를 출력한다.
 '''
+
+n, m = map(int, input().split())
+dp = [[0] * (n+1) for _ in range(m+1)]
+list = [[0,0]]
+
+for _ in range(m) :
+  a, b = map(int, input().split())
+  list.append([a,b])
+
+list = sorted(list)
+
+for i in range(1, m+1) :
+  for j in range(1, n+1) :
+    day, page = list[i][0], list[i][1]
+    if j < day :
+      dp[i][j] = dp[i-1][j]
+    else :
+      dp[i][j] = max(dp[i-1][j], dp[i-1][j-day] + page)
+
+print(dp[m][n])
