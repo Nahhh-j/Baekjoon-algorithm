@@ -15,3 +15,19 @@ i+1번째 줄에는 i번째 회원의 선호도 ai,1, ai,2, ..., ai,M (1 ≤ ai,
 출력
 첫 번째 줄에 고리 회원들의 만족도의 합의 최댓값을 출력합니다.
 '''
+
+import sys
+from itertools import combinations
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+like = [list(map(int, input().split())) for _ in range(n)]
+
+maxSum = 0
+for a, b, c in combinations(range(m), 3):
+    tmpSum = 0
+    for i in range(n):
+        tmpSum += max(like[i][a], like[i][b], like[i][c])
+    maxSum = max(maxSum, tmpSum)
+
+print(maxSum)
