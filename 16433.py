@@ -13,3 +13,19 @@
 첫 번째 줄부터 N번째 줄까지 각 줄에 길이가 N인 문자열을 출력합니다.
 i행 j열에 당근이 심어졌다면 i번째 줄 j번째 문자를 'v' 로 표시하며 심어지지 않았다면 '.' 로 표시합니다.
 '''
+
+N, R, C = map(int,input().split())
+
+if (R + C) % 2 == 0:
+    for i in range(N):
+        if i % 2 == 0:
+            print("v." * (N // 2) + 'v' * (N % 2))
+        else:
+            print(".v" * (N // 2) + '.' * (N % 2))
+            
+else:
+    for i in range(N):
+        if i % 2 == 1:
+            print("v." * (N // 2) + 'v' * (N % 2))
+        else:
+            print(".v" * (N // 2) + '.' * (N % 2))
