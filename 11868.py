@@ -12,3 +12,14 @@ koosaga와 cubelover가 님 게임을 하고 있다. 님 게임은 돌을 차곡
 출력
 koosaga가 이기는 경우에는 'koosaga'를, cubelover가 이기는 경우에는 'cubelover'를 출력한다.
 '''
+
+import sys
+
+n = int(sys.stdin.readline())
+piles = list(map(int, sys.stdin.readline().split()))
+
+nim = 0
+for p in piles:
+    nim ^= p
+
+print("koosaga" if nim != 0 else "cubelover")
