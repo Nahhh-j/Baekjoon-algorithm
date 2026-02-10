@@ -15,3 +15,10 @@ koosaga와 cubelover는 님블을 하려고 한다. 두 사람이 모두 최적�
 출력
 koosaga가 이기는 경우에는 'koosaga'를, cubelover가 이기는 경우에는 'cubelover'를 출력한다.
 '''
+
+N = int(input())
+total = 0
+num_li = list(map(int, input().split()))
+for num in num_li:
+    total ^= num
+print('koosaga' if total else 'cubelover')
