@@ -23,3 +23,18 @@
 출력
 첫 번째 줄에 S를 올바른 괄호열으로 만들기 위해 앞과 뒤에 붙여야 할 괄호의 최소 개수를 출력합니다. 불가능한 경우는 주어지지 않습니다.
 '''
+
+def process(word):
+    arr = []
+    cnt = 0
+    for i in word:
+        if i == '(':
+            arr.append(i)
+        elif i == ')':
+            if len(arr) == 0:
+                cnt += 1
+            else:
+                arr.pop()
+    return cnt + len(arr)
+
+print(process(input()))
