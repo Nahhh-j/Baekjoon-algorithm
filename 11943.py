@@ -13,3 +13,8 @@
 출력
 사과와 오렌지를 옮기는 최소 횟수를 출력한다.
 '''
+
+A, B = map(int, input().split())
+C, D = map(int, input().split())
+
+print(min(A+D,B+C))
