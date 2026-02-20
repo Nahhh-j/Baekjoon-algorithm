@@ -15,3 +15,7 @@
 출력
 입력으로 주어진 붕어빵이 좌우로 뒤집힌 모양을 출력하세요.
 '''
+
+N, M = map(int, input().split())
+for _ in range(N):
+    print(input()[::-1])
