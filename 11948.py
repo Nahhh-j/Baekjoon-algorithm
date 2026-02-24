@@ -19,3 +19,10 @@ JOI는 물리, 화학, 생물, 지구과학 4과목 중에서 3 과목을 선택
 출력
 JOI가 선택한 과목의 총 점수를 1행에 출력하시오.
 '''
+
+li = [] 
+for _ in range(6):  
+    li.append(int(input())) 
+li1 = sorted(li[:4]) 
+li2 = li[4:] 
+print(sum(li1[1:]) + max(li2))
