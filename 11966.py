@@ -10,3 +10,11 @@
 출력
 N이 2의 제곱수면 1을 아니면 0을 출력하는 프로그램을 작성하시오.
 '''
+
+N = int(input())
+squares = [2**i for i in range(31)]
+
+if N in squares:
+    print(1)
+else:
+    print(0)
