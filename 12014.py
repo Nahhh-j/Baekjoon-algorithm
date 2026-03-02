@@ -18,3 +18,25 @@ N과 K, 주가가 주어졌을때 주어진 조건을 만족하게 주식을 구
 출력
 각 테스트 케이스에 대해서 출력은 한 줄로 구성된다. T 번째 테스트 케이스에 대해서는 첫째 줄에는 "Case #T"를 출력한다. 두 번째 줄에는 주어진 조건을 만족하게 주식을 살 수 있으면 1, 아니면 0을 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+test_case = int(input())
+for tc in range(test_case):
+    N, K = map(int, input().split())
+    prices = list(map(int, input().split()))
+    cache = [1 for _ in range(N)]
+
+    for i in range(N):
+        for j in range(i):
+            if prices[j] < prices[i]:
+                cache[i] = max(cache[j]+1, cache[i])
+
+    answer = 0
+    for c in cache:
+        if c == K:
+            answer = 1
+            break
+    print("Case #{}".format(tc+1))
+    print(answer)
