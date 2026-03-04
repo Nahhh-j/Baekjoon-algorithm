@@ -16,3 +16,36 @@ BOJ거리의 각 보도블록에는 B, O, J 중에 하나가 쓰여 있다. 1번
 출력
 스타트가 링크를 만나는데 필요한 에너지 양의 최솟값을 출력한다. 만약, 스타트가 링크를 만날 수 없는 경우에는 -1을 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+N = int(input())
+blocks = list(input().rstrip())
+visited = True
+dp = list([1e9, not visited] for _ in range(N))
+dp[0][0], dp[0][1] = 0, True
+
+
+for i in range(1, N):
+    block = blocks[i]
+    check_jump = '?'
+
+    if block == 'B':
+        check_jump = 'J'
+    elif block == 'O':
+        check_jump = 'B'
+    else:
+        check_jump = 'O'
+
+    for j in range(i):
+        if check_jump == blocks[j]:
+     
+            dp[i][0] = min(dp[i][0], dp[j][0] + pow(i-j, 2))
+
+            if dp[i][0] != 1e9:
+                dp[i][1] = True
+
+if dp[N-1][1]:
+    print(dp[N-1][0])
+else:
+    print(-1)
