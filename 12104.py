@@ -11,3 +11,40 @@
 출력
 첫째 줄에 A와 XOR했을 때, 0이 나오는 B의 순환 순열의 개수를 출력한다.
 '''
+
+import sys
+
+A = sys.stdin.readline().strip()
+B = sys.stdin.readline().strip()
+
+def kmp_table(p):
+    n = len(p)
+    table = [0]*n
+    j = 0
+    for i in range(1,n):
+        while j>0 and p[i]!=p[j]:
+            j = table[j-1]
+        if p[i]==p[j]:
+            j+=1
+            table[i]=j
+    return table
+
+def kmp_search(t,p):
+    table = kmp_table(p)
+    j=0
+    res=0
+    n=len(p)
+    for i in range(len(t)-1):
+        while j>0 and t[i]!=p[j]:
+            j=table[j-1]
+        if t[i]==p[j]:
+            if j==n-1:
+                if i-n+1 < n:
+                    res+=1
+                j=table[j]
+            else:
+                j+=1
+    return res
+
+T = B+B
+print(kmp_search(T,A))
