@@ -15,3 +15,20 @@ CTP공국은 현재 부흥 중이라 새로 국민이 되고자 하는 사람이
 출력
 각 시험문제의 정답을 출력한다. 출력이 알파벳인 경우 대문자로 출력한다.
 '''
+
+t = int(input())
+
+for _ in range(t) :
+  m, case = input().split()
+  data = list(input().split())
+  if case == 'C' :
+    for i in range(len(data)) :
+      data[i] = ord(data[i]) - 64
+  else :
+    for i in range(len(data)) :
+      data[i] = chr(int(data[i]) + 64)
+
+  for i in range(len(data)) :
+    print(data[i], end=' ')
+  
+  print()
