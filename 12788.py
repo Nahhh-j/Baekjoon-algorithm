@@ -14,3 +14,20 @@ CTP에는 N명의 회원들이 존재하며 각각의 회원들의 필통에 들
 출력
 정은이가 최소한의 회원들에게 빌리려고 할 때, 빌린 회원의 수를 출력한다. 만약 펜이 부족한 경우 "STRESS"(따옴표는 제외)를 출력한다.
 '''
+
+import sys
+input=sys.stdin.readline
+
+N=int(input())
+M,K=map(int,input().split())
+pen=list(map(int, input().split()))
+if M*K>sum(pen):
+    print('STRESS')
+else:
+    pen.sort(reverse=True)
+    sum=0
+    cnt=0
+    while sum<M*K:
+        sum+=pen[cnt]
+        cnt+=1
+    print(cnt)
