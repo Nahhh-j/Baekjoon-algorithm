@@ -17,3 +17,12 @@
 출력
 H에서 N이 몇 번 등장하는지 출력한다.
 '''
+
+import sys
+
+text = sys.stdin.readline().strip()
+word = sys.stdin.readline().strip()
+
+l = list(text.split(word))
+
+print(len(l) - 1)
