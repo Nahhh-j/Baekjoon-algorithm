@@ -26,3 +26,23 @@ S E -> S년 1월 1일 이후, E년 12월 31일 이전 발매된 데이빗 보위
 이후 S개의 줄에 데이빗 보위의 앨범 이름을 새 줄로 구분하여 주어진 순서대로 출력한다. 앨범의 이름을 출력할 때, 띄어쓰기, 대소문자 등이 출제자의 코드와 다르게 출력되면 안 된다. 출력은 예제에 나온 이름과 정확히 일치해야 한다.
 각각의 질의마다 새 줄로 구분할 필요는 없다. 예제 입출력을 참고하라.
 '''
+
+albums = [[1967, 'DavidBowie'], [1969, 'SpaceOddity'], [1970, 'TheManWhoSoldTheWorld'],
+       [1971, 'HunkyDory'], [1972, 'TheRiseAndFallOfZiggyStardustAndTheSpidersFromMars'],
+       [1973, 'AladdinSane'], [1973, 'PinUps'], [1974, 'DiamondDogs'],
+       [1975, 'YoungAmericans'], [1976, 'StationToStation'], [1977, 'Low'],
+       [1977, 'Heroes'], [1979, 'Lodger'], [1980, 'ScaryMonstersAndSuperCreeps'],
+       [1983, 'LetsDance'], [1984, 'Tonight'], [1987, 'NeverLetMeDown'],
+       [1993, 'BlackTieWhiteNoise'], [1995, '1.Outside'], [1997, 'Earthling'],
+       [1999, 'Hours'], [2002, 'Heathen'], [2003, 'Reality'], [2013, 'TheNextDay'],
+       [2016, 'BlackStar']]
+    
+for _ in range(int(input())):
+    s, e = map(int, input().split())
+    result = list()
+    for album in albums:
+        if s <= album[0] <= e:
+            result.append(album)
+    print(len(result))
+    for album in result:
+        print(*album)
