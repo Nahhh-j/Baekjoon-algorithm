@@ -15,3 +15,9 @@
 출력
 각 캐릭터, 즉 각 테스트 케이스마다 한 줄에 하나씩 캐릭터의 최종 전투력을 출력한다.
 '''
+
+for _ in range(int(input())):
+    li = list(map(int, input().split()))
+    s = [li[i] + li[i+4] for i in range(4)]
+    res = max(s[0], 1) + max(s[1], 1)*5 + max(s[2], 0)*2 + s[3]*2
+    print(res)
