@@ -13,3 +13,30 @@ N이 주어진다. 두 사람이 최적의 방법으로 게임했을 때, 누가
 출력
 성관이가 이기면 1, 홍준이가 이기면 2를 출력한다.
 '''
+
+import sys
+
+N = int(sys.stdin.readline().rstrip())
+
+grundys = [-1 for _ in range(1001)]
+
+grundys[0] = 0
+grundys[1] = 0
+grundys[2] = 1
+
+for i in range(3, 1001):
+    cur = [0 for _ in range(1001)]
+    for j in range(i//2 + 1):
+        left = j
+        right = (i - 2) - j
+        cur[grundys[left]^grundys[right]] = 1
+        
+    for k in range(i):
+        if cur[k] == 0:
+            grundys[i] = k
+            break
+        
+if grundys[N] == 0:
+    print('2')
+else:
+    print('1')
