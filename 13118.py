@@ -21,3 +21,7 @@ x축을 향해 떨어지는 사과.
 출력
 첫 번째 줄에 사과와 충돌하는 사람의 번호를 출력한다. 단, 사과와 충돌하는 사람이 없다면 0을 대신 출력한다.
 '''
+
+li = list(map(int, input().split()))
+x, y, r = map(int, input().split())
+print(li.index(x)+1 if x in li else 0)
