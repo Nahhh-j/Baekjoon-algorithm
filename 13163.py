@@ -14,3 +14,14 @@
 출력
 각 줄에 하나씩 갓을 붙인 닉네임을 출력한다.
 '''
+
+N = int(input())
+ 
+for _ in range(N):
+    nickName = input().split()
+    result = "god"
+ 
+    for i in range(1, len(nickName)):
+        result += nickName[i]
+ 
+    print(result)
