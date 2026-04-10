@@ -11,3 +11,16 @@
 출력
 티셔츠 만드는 비용이 최소가 되도록 K개의 조로 나누었을 때, 티셔츠 만드는 비용을 출력한다.
 '''
+
+import sys
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+kids = list(map(int, input().split()))
+
+array = []
+for i in range(1, n):
+    array.append(kids[i] - kids[i-1])
+
+array.sort(reverse=True)
+print(sum(array[k-1:]))
