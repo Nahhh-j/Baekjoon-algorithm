@@ -11,7 +11,7 @@
 첫째 줄부터 한 줄에 하나씩 차례대로 A & B, A | B, A ^ B, ~A, ~B를 출력한다.
 '''
 
- = int(input(), 2)
+a = int(input(), 2)
 b = int(input(), 2)
 n = 100000
 mask = 2 ** n - 1
