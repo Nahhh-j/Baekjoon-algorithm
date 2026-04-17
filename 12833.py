@@ -10,3 +10,8 @@
 출력
 첫째 줄에 계산된 결과를 출력한다.
 '''
+
+a, b, c=map(int, input().split())
+for _ in range(c%2):
+    a^=b
+print(a)
