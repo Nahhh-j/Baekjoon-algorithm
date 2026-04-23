@@ -10,3 +10,11 @@
 출력
 N을 N번 출력한다. 만약 답이 길어지면 답의 앞 M자리를 출력한다.
 '''
+
+N, M = map(int, input().split())
+result = ""
+ 
+for _ in range(N):
+    result += str(N)
+ 
+print(result[:M])
