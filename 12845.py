@@ -23,3 +23,9 @@ x1에 c3를 덧붙인 카드 x2의 레벨은 40이고 획득 골드는 70이다.
 출력
 영관이가 받을 수 있는 골드의 최댓값을 출력한다.
 '''
+
+N = int(input())
+cards = sorted(list(map(int, input().split())), reverse=True)
+
+result = [(cards[0] + card) for idx, card in enumerate(cards) if idx > 0]
+print(sum(result))
