@@ -15,3 +15,18 @@
 출력
 각 2 쿼리에 대해 계산된 값을 각 줄에 출력한다.
 '''
+
+import sys; input = sys.stdin.readline
+ 
+def solve():
+    N, Q = map(int, input().split())
+    money = [0] * (N + 1)
+ 
+    for _ in range(Q):
+        query, p, q = map(int, input().split())
+        if query == 1:
+            money[p] += q
+        else:
+            print(sum(money[p:q + 1]))
+ 
+solve()
